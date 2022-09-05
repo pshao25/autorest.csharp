@@ -15,6 +15,7 @@ using Types;
 
 namespace property_types
 {
+    // Data plane generated client. The Duration service client.
     /// <summary> The Duration service client. </summary>
     public partial class DurationClient
     {
@@ -103,7 +104,7 @@ namespace property_types
         /// 
         /// Schema for <c>DurationProperty</c>:
         /// <code>{
-        ///   property: string, # Required.
+        ///   property: string (duration ISO 8601 Format), # Required.
         /// }
         /// </code>
         /// 
@@ -145,7 +146,7 @@ namespace property_types
         /// 
         /// Schema for <c>DurationProperty</c>:
         /// <code>{
-        ///   property: string, # Required.
+        ///   property: string (duration ISO 8601 Format), # Required.
         /// }
         /// </code>
         /// 
@@ -201,7 +202,7 @@ namespace property_types
         /// var client = new DurationClient();
         /// 
         /// var data = new {
-        ///     property = "<property>",
+        ///     property = PT1H23M45S,
         /// };
         /// 
         /// Response response = await client.PutAsync(RequestContent.Create(data));
@@ -215,7 +216,7 @@ namespace property_types
         /// 
         /// Schema for <c>DurationProperty</c>:
         /// <code>{
-        ///   property: string, # Required.
+        ///   property: string (duration ISO 8601 Format), # Required.
         /// }
         /// </code>
         /// 
@@ -249,7 +250,7 @@ namespace property_types
         /// var client = new DurationClient();
         /// 
         /// var data = new {
-        ///     property = "<property>",
+        ///     property = PT1H23M45S,
         /// };
         /// 
         /// Response response = client.Put(RequestContent.Create(data));
@@ -263,7 +264,7 @@ namespace property_types
         /// 
         /// Schema for <c>DurationProperty</c>:
         /// <code>{
-        ///   property: string, # Required.
+        ///   property: string (duration ISO 8601 Format), # Required.
         /// }
         /// </code>
         /// 
@@ -295,6 +296,7 @@ namespace property_types
             uri.Reset(_endpoint);
             uri.AppendPath("/models/properties/types/duration", false);
             request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
             return message;
         }
 
@@ -307,6 +309,8 @@ namespace property_types
             uri.Reset(_endpoint);
             uri.AppendPath("/models/properties/types/duration", false);
             request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Content-Type", "application/json");
             request.Content = content;
             return message;
         }

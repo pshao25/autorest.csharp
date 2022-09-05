@@ -15,6 +15,7 @@ using Types;
 
 namespace property_types
 {
+    // Data plane generated client. The Model service client.
     /// <summary> The Model service client. </summary>
     public partial class ModelClient
     {
@@ -307,6 +308,7 @@ namespace property_types
             uri.Reset(_endpoint);
             uri.AppendPath("/models/properties/types/model", false);
             request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
             return message;
         }
 
@@ -319,6 +321,8 @@ namespace property_types
             uri.Reset(_endpoint);
             uri.AppendPath("/models/properties/types/model", false);
             request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Content-Type", "application/json");
             request.Content = content;
             return message;
         }

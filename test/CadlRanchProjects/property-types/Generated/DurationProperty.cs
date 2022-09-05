@@ -6,7 +6,6 @@
 #nullable disable
 
 using System;
-using Azure.Core;
 
 namespace Types
 {
@@ -15,14 +14,11 @@ namespace Types
     {
         /// <summary> Initializes a new instance of DurationProperty. </summary>
         /// <param name="property"></param>
-        /// <exception cref="ArgumentNullException"> <paramref name="property"/> is null. </exception>
-        public DurationProperty(string property)
+        public DurationProperty(TimeSpan property)
         {
-            Argument.AssertNotNull(property, nameof(property));
-
             Property = property;
         }
 
-        public string Property { get; set; }
+        public TimeSpan Property { get; set; }
     }
 }

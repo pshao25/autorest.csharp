@@ -190,7 +190,7 @@
      "Type": {
       "$id": "25",
       "Name": "TimeSpan",
-      "Kind": "String",
+      "Kind": "DurationISO8601",
       "IsNullable": false
      },
      "IsRequired": true,
@@ -410,55 +410,113 @@
         },
         "Value": "http://localhost:3000"
        }
-      }
-     ],
-     "Responses": [
-      {
-       "$id": "52",
-       "StatusCodes": [
-        200
-       ],
-       "BodyType": {
-        "$ref": "5"
-       },
-       "BodyMediaType": "Json"
-      }
-     ],
-     "HttpMethod": "GET",
-     "RequestBodyMediaType": "Json",
-     "Uri": "{host}",
-     "Path": "/models/properties/types/boolean",
-     "BufferResponse": true
-    },
-    {
-     "$id": "53",
-     "Name": "put",
-     "Parameters": [
-      {
-       "$ref": "48"
       },
       {
-       "$id": "54",
-       "Name": "body",
-       "NameInRequest": "body",
+       "$id": "52",
+       "Name": "Accept",
+       "NameInRequest": "Accept",
        "Type": {
-        "$ref": "5"
+        "$id": "53",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
        },
-       "Location": "Body",
-       "IsRequired": true,
+       "Location": "Header",
        "IsApiVersion": false,
        "IsResourceParameter": false,
        "IsContentType": false,
+       "IsRequired": true,
        "IsEndpoint": false,
-       "SkipUrlEncoding": true,
+       "SkipUrlEncoding": false,
        "Explode": false,
-       "Kind": "Method"
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "54",
+        "Type": {
+         "$ref": "53"
+        },
+        "Value": "application/json"
+       }
       }
      ],
      "Responses": [
       {
        "$id": "55",
        "StatusCodes": [
+        200
+       ],
+       "BodyType": {
+        "$ref": "5"
+       },
+       "BodyMediaType": "Json"
+      }
+     ],
+     "HttpMethod": "GET",
+     "RequestBodyMediaType": "Json",
+     "Uri": "{host}",
+     "Path": "/models/properties/types/boolean",
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
+    },
+    {
+     "$id": "56",
+     "Name": "put",
+     "Parameters": [
+      {
+       "$ref": "48"
+      },
+      {
+       "$id": "57",
+       "Name": "body",
+       "NameInRequest": "body",
+       "Type": {
+        "$ref": "5"
+       },
+       "Location": "Body",
+       "IsRequired": true,
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": false,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": true,
+       "Explode": false,
+       "Kind": "Method"
+      },
+      {
+       "$id": "58",
+       "Name": "contentType",
+       "NameInRequest": "Content-Type",
+       "Type": {
+        "$id": "59",
+        "Name": "String",
+        "Kind": "String",
+        "IsNullable": false
+       },
+       "Location": "Header",
+       "IsApiVersion": false,
+       "IsResourceParameter": false,
+       "IsContentType": true,
+       "IsRequired": true,
+       "IsEndpoint": false,
+       "SkipUrlEncoding": false,
+       "Explode": false,
+       "Kind": "Constant",
+       "DefaultValue": {
+        "$id": "60",
+        "Type": {
+         "$ref": "59"
+        },
+        "Value": "application/json"
+       }
+      },
+      {
+       "$ref": "52"
+      }
+     ],
+     "Responses": [
+      {
+       "$id": "61",
+       "StatusCodes": [
         204
        ],
        "BodyMediaType": "Json"
@@ -468,28 +526,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/boolean",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "56"
+    "$id": "62"
    }
   },
   {
-   "$id": "57",
+   "$id": "63",
    "Name": "String",
    "Operations": [
     {
-     "$id": "58",
+     "$id": "64",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "59",
+       "$id": "65",
        "StatusCodes": [
         200
        ],
@@ -503,17 +568,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/string",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "60",
+     "$id": "66",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "61",
+       "$id": "67",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -528,11 +594,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "62",
+       "$id": "68",
        "StatusCodes": [
         204
        ],
@@ -543,28 +615,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/string",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "63"
+    "$id": "69"
    }
   },
   {
-   "$id": "64",
+   "$id": "70",
    "Name": "Bytes",
    "Operations": [
     {
-     "$id": "65",
+     "$id": "71",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "66",
+       "$id": "72",
        "StatusCodes": [
         200
        ],
@@ -578,17 +657,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/bytes",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "67",
+     "$id": "73",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "68",
+       "$id": "74",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -603,11 +683,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "69",
+       "$id": "75",
        "StatusCodes": [
         204
        ],
@@ -618,28 +704,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/bytes",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "70"
+    "$id": "76"
    }
   },
   {
-   "$id": "71",
+   "$id": "77",
    "Name": "Int",
    "Operations": [
     {
-     "$id": "72",
+     "$id": "78",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "73",
+       "$id": "79",
        "StatusCodes": [
         200
        ],
@@ -653,17 +746,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/int",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "74",
+     "$id": "80",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "75",
+       "$id": "81",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -678,11 +772,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "76",
+       "$id": "82",
        "StatusCodes": [
         204
        ],
@@ -693,28 +793,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/int",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "77"
+    "$id": "83"
    }
   },
   {
-   "$id": "78",
+   "$id": "84",
    "Name": "Float",
    "Operations": [
     {
-     "$id": "79",
+     "$id": "85",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "80",
+       "$id": "86",
        "StatusCodes": [
         200
        ],
@@ -728,17 +835,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/float",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "81",
+     "$id": "87",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "82",
+       "$id": "88",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -753,11 +861,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "83",
+       "$id": "89",
        "StatusCodes": [
         204
        ],
@@ -768,28 +882,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/float",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "84"
+    "$id": "90"
    }
   },
   {
-   "$id": "85",
+   "$id": "91",
    "Name": "Datetime",
    "Operations": [
     {
-     "$id": "86",
+     "$id": "92",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "87",
+       "$id": "93",
        "StatusCodes": [
         200
        ],
@@ -803,17 +924,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/datetime",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "88",
+     "$id": "94",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "89",
+       "$id": "95",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -828,11 +950,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "90",
+       "$id": "96",
        "StatusCodes": [
         204
        ],
@@ -843,28 +971,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/datetime",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "91"
+    "$id": "97"
    }
   },
   {
-   "$id": "92",
+   "$id": "98",
    "Name": "Duration",
    "Operations": [
     {
-     "$id": "93",
+     "$id": "99",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "94",
+       "$id": "100",
        "StatusCodes": [
         200
        ],
@@ -878,17 +1013,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/duration",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "95",
+     "$id": "101",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "96",
+       "$id": "102",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -903,11 +1039,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "97",
+       "$id": "103",
        "StatusCodes": [
         204
        ],
@@ -918,28 +1060,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/duration",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "98"
+    "$id": "104"
    }
   },
   {
-   "$id": "99",
+   "$id": "105",
    "Name": "Enum",
    "Operations": [
     {
-     "$id": "100",
+     "$id": "106",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "101",
+       "$id": "107",
        "StatusCodes": [
         200
        ],
@@ -953,17 +1102,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/enum",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "102",
+     "$id": "108",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "103",
+       "$id": "109",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -978,11 +1128,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "104",
+       "$id": "110",
        "StatusCodes": [
         204
        ],
@@ -993,28 +1149,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/enum",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "105"
+    "$id": "111"
    }
   },
   {
-   "$id": "106",
+   "$id": "112",
    "Name": "ExtensibleEnum",
    "Operations": [
     {
-     "$id": "107",
+     "$id": "113",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "108",
+       "$id": "114",
        "StatusCodes": [
         200
        ],
@@ -1028,17 +1191,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/extensible-enum",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "109",
+     "$id": "115",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "110",
+       "$id": "116",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -1053,11 +1217,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "111",
+       "$id": "117",
        "StatusCodes": [
         204
        ],
@@ -1068,28 +1238,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/extensible-enum",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "112"
+    "$id": "118"
    }
   },
   {
-   "$id": "113",
+   "$id": "119",
    "Name": "Model",
    "Operations": [
     {
-     "$id": "114",
+     "$id": "120",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "115",
+       "$id": "121",
        "StatusCodes": [
         200
        ],
@@ -1103,17 +1280,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/model",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "116",
+     "$id": "122",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "117",
+       "$id": "123",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -1128,11 +1306,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "118",
+       "$id": "124",
        "StatusCodes": [
         204
        ],
@@ -1143,28 +1327,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/model",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "119"
+    "$id": "125"
    }
   },
   {
-   "$id": "120",
+   "$id": "126",
    "Name": "CollectionsString",
    "Operations": [
     {
-     "$id": "121",
+     "$id": "127",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "122",
+       "$id": "128",
        "StatusCodes": [
         200
        ],
@@ -1178,17 +1369,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/collections/string",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "123",
+     "$id": "129",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "124",
+       "$id": "130",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -1203,11 +1395,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "125",
+       "$id": "131",
        "StatusCodes": [
         204
        ],
@@ -1218,28 +1416,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/collections/string",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "126"
+    "$id": "132"
    }
   },
   {
-   "$id": "127",
+   "$id": "133",
    "Name": "CollectionsInt",
    "Operations": [
     {
-     "$id": "128",
+     "$id": "134",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "129",
+       "$id": "135",
        "StatusCodes": [
         200
        ],
@@ -1253,17 +1458,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/collections/int",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "130",
+     "$id": "136",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "131",
+       "$id": "137",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -1278,11 +1484,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "132",
+       "$id": "138",
        "StatusCodes": [
         204
        ],
@@ -1293,28 +1505,35 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/collections/int",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "133"
+    "$id": "139"
    }
   },
   {
-   "$id": "134",
+   "$id": "140",
    "Name": "CollectionsModel",
    "Operations": [
     {
-     "$id": "135",
+     "$id": "141",
      "Name": "get",
      "Parameters": [
       {
        "$ref": "48"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "136",
+       "$id": "142",
        "StatusCodes": [
         200
        ],
@@ -1328,17 +1547,18 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/collections/model",
-     "BufferResponse": true
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     },
     {
-     "$id": "137",
+     "$id": "143",
      "Name": "put",
      "Parameters": [
       {
        "$ref": "48"
       },
       {
-       "$id": "138",
+       "$id": "144",
        "Name": "body",
        "NameInRequest": "body",
        "Type": {
@@ -1353,11 +1573,17 @@
        "SkipUrlEncoding": true,
        "Explode": false,
        "Kind": "Method"
+      },
+      {
+       "$ref": "58"
+      },
+      {
+       "$ref": "52"
       }
      ],
      "Responses": [
       {
-       "$id": "139",
+       "$id": "145",
        "StatusCodes": [
         204
        ],
@@ -1368,11 +1594,15 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{host}",
      "Path": "/models/properties/types/collections/model",
-     "BufferResponse": true
+     "RequestMediaTypes": [
+      "application/json"
+     ],
+     "BufferResponse": true,
+     "GenerateConvenienceMethod": true
     }
    ],
    "Protocol": {
-    "$id": "140"
+    "$id": "146"
    }
   }
  ]

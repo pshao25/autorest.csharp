@@ -54,7 +54,7 @@ namespace CadlRanchProjects.Tests
         [Test]
         public Task Models_Property_Types_Bytes_put() => Test(async (host) =>
         {
-            Response response = await new BytesClient(host, null).PutAsync(new BytesProperty(BinaryData.FromString("aGVsbG8sIHdvcmxkIQ==")));
+            Response response = await new BytesClient(host, null).PutAsync(new BytesProperty(BinaryData.FromString("\"aGVsbG8sIHdvcmxkIQ==\"")));
             Assert.AreEqual(204, response.Status);
         }, new[] { TestServerType.CadlRanch });
 

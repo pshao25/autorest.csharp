@@ -15,6 +15,7 @@ using Types;
 
 namespace property_types
 {
+    // Data plane generated client. The Enum service client.
     /// <summary> The Enum service client. </summary>
     public partial class EnumClient
     {
@@ -295,6 +296,7 @@ namespace property_types
             uri.Reset(_endpoint);
             uri.AppendPath("/models/properties/types/enum", false);
             request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
             return message;
         }
 
@@ -307,6 +309,8 @@ namespace property_types
             uri.Reset(_endpoint);
             uri.AppendPath("/models/properties/types/enum", false);
             request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Content-Type", "application/json");
             request.Content = content;
             return message;
         }
