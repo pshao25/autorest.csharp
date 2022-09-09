@@ -11,20 +11,28 @@ using Azure.Core;
 
 namespace ConfidentialLedger
 {
-    public partial class TransactionId : IUtf8JsonSerializable
+    public partial class Collection : IUtf8JsonSerializable
     {
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
         {
             writer.WriteStartObject();
+            writer.WritePropertyName("collectionId");
+            writer.WriteStringValue(CollectionId);
             writer.WriteEndObject();
         }
 
-        internal static TransactionId DeserializeTransactionId(JsonElement element)
+        internal static Collection DeserializeCollection(JsonElement element)
         {
+            string collectionId = default;
             foreach (var property in element.EnumerateObject())
             {
+                if (property.NameEquals("collectionId"))
+                {
+                    collectionId = property.Value.GetString();
+                    continue;
+                }
             }
-            return new TransactionId();
+            return new Collection(collectionId);
         }
 
         internal RequestContent ToRequestContent()
@@ -34,10 +42,10 @@ namespace ConfidentialLedger
             return content;
         }
 
-        internal static TransactionId FromResponse(Response response)
+        internal static Collection FromResponse(Response response)
         {
             using var document = JsonDocument.Parse(response.Content);
-            return DeserializeTransactionId(document.RootElement);
+            return DeserializeCollection(document.RootElement);
         }
     }
 }

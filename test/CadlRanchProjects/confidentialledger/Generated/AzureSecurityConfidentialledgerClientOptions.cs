@@ -10,8 +10,8 @@ using Azure.Core;
 
 namespace confidentialledger
 {
-    /// <summary> Client options for ConfidentialLedgerClient. </summary>
-    public partial class ConfidentialLedgerClientOptions : ClientOptions
+    /// <summary> Client options for azure.security.confidentialledger library clients. </summary>
+    public partial class AzureSecurityConfidentialledgerClientOptions : ClientOptions
     {
         private const ServiceVersion LatestVersion = ServiceVersion.V2022_05_13;
 
@@ -24,8 +24,8 @@ namespace confidentialledger
 
         internal string Version { get; }
 
-        /// <summary> Initializes new instance of ConfidentialLedgerClientOptions. </summary>
-        public ConfidentialLedgerClientOptions(ServiceVersion version = LatestVersion)
+        /// <summary> Initializes new instance of AzureSecurityConfidentialledgerClientOptions. </summary>
+        public AzureSecurityConfidentialledgerClientOptions(ServiceVersion version = LatestVersion)
         {
             Version = version switch
             {

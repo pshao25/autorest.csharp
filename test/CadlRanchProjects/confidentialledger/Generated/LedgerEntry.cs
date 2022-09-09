@@ -26,7 +26,7 @@ namespace ConfidentialLedger
         /// <param name="contents"></param>
         /// <param name="collectionId"></param>
         /// <param name="transactionId"></param>
-        internal LedgerEntry(string contents, string collectionId, TransactionId transactionId)
+        internal LedgerEntry(string contents, string collectionId, string transactionId)
         {
             Contents = contents;
             CollectionId = collectionId;
@@ -37,6 +37,6 @@ namespace ConfidentialLedger
 
         public string CollectionId { get; }
 
-        public TransactionId TransactionId { get; }
+        public string TransactionId { get; }
     }
 }

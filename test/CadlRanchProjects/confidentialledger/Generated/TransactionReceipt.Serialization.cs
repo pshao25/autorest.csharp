@@ -11,31 +11,35 @@ using Azure.Core;
 
 namespace ConfidentialLedger
 {
-    public partial class LedgerEntry : IUtf8JsonSerializable
+    public partial class TransactionReceipt : IUtf8JsonSerializable
     {
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
         {
             writer.WriteStartObject();
-            writer.WritePropertyName("contents");
-            writer.WriteStringValue(Contents);
+            writer.WritePropertyName("receipt");
+            writer.WriteObjectValue(Receipt);
+            writer.WritePropertyName("state");
+            writer.WriteStringValue(State.ToString());
+            writer.WritePropertyName("transactionId");
+            writer.WriteStringValue(TransactionId);
             writer.WriteEndObject();
         }
 
-        internal static LedgerEntry DeserializeLedgerEntry(JsonElement element)
+        internal static TransactionReceipt DeserializeTransactionReceipt(JsonElement element)
         {
-            string contents = default;
-            string collectionId = default;
+            ReceiptContents receipt = default;
+            LedgerQueryState state = default;
             string transactionId = default;
             foreach (var property in element.EnumerateObject())
             {
-                if (property.NameEquals("contents"))
+                if (property.NameEquals("receipt"))
                 {
-                    contents = property.Value.GetString();
+                    receipt = ReceiptContents.DeserializeReceiptContents(property.Value);
                     continue;
                 }
-                if (property.NameEquals("collectionId"))
+                if (property.NameEquals("state"))
                 {
-                    collectionId = property.Value.GetString();
+                    state = new LedgerQueryState(property.Value.GetString());
                     continue;
                 }
                 if (property.NameEquals("transactionId"))
@@ -44,7 +48,7 @@ namespace ConfidentialLedger
                     continue;
                 }
             }
-            return new LedgerEntry(contents, collectionId, transactionId);
+            return new TransactionReceipt(receipt, state, transactionId);
         }
 
         internal RequestContent ToRequestContent()
@@ -54,10 +58,10 @@ namespace ConfidentialLedger
             return content;
         }
 
-        internal static LedgerEntry FromResponse(Response response)
+        internal static TransactionReceipt FromResponse(Response response)
         {
             using var document = JsonDocument.Parse(response.Content);
-            return DeserializeLedgerEntry(document.RootElement);
+            return DeserializeTransactionReceipt(document.RootElement);
         }
     }
 }

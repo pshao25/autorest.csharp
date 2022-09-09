@@ -9,9 +9,9 @@ using System.Text.Json;
 using Azure;
 using Azure.Core;
 
-namespace Rest
+namespace ConfidentialLedger
 {
-    public partial class ResourceLocation : IUtf8JsonSerializable
+    public partial class ReceiptContents : IUtf8JsonSerializable
     {
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
         {
@@ -19,12 +19,12 @@ namespace Rest
             writer.WriteEndObject();
         }
 
-        internal static ResourceLocation DeserializeResourceLocation(JsonElement element)
+        internal static ReceiptContents DeserializeReceiptContents(JsonElement element)
         {
             foreach (var property in element.EnumerateObject())
             {
             }
-            return new ResourceLocation();
+            return new ReceiptContents();
         }
 
         internal RequestContent ToRequestContent()
@@ -34,10 +34,10 @@ namespace Rest
             return content;
         }
 
-        internal static ResourceLocation FromResponse(Response response)
+        internal static ReceiptContents FromResponse(Response response)
         {
             using var document = JsonDocument.Parse(response.Content);
-            return DeserializeResourceLocation(document.RootElement);
+            return DeserializeReceiptContents(document.RootElement);
         }
     }
 }
