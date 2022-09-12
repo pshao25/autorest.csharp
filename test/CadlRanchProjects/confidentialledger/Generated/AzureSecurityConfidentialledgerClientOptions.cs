@@ -8,7 +8,7 @@
 using System;
 using Azure.Core;
 
-namespace confidentialledger
+namespace Azure.Security.Confidentialledger
 {
     /// <summary> Client options for azure.security.confidentialledger library clients. </summary>
     public partial class AzureSecurityConfidentialledgerClientOptions : ClientOptions

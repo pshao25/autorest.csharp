@@ -8,7 +8,7 @@
   {
    "$id": "2",
    "Name": "LedgerQueryState",
-   "Namespace": "ConfidentialLedger",
+   "Namespace": "Azure.Security.ConfidentialLedger",
    "Description": "State of a ledger query.",
    "EnumValueType": "String",
    "AllowedValues": [
@@ -29,7 +29,7 @@
   {
    "$id": "5",
    "Name": "TransactionState",
-   "Namespace": "ConfidentialLedger",
+   "Namespace": "Azure.Security.ConfidentialLedger",
    "Description": "Represents the state of the transaction.",
    "EnumValueType": "String",
    "AllowedValues": [
@@ -50,7 +50,7 @@
   {
    "$id": "8",
    "Name": "LedgerUserRole",
-   "Namespace": "ConfidentialLedger",
+   "Namespace": "Azure.Security.ConfidentialLedger",
    "Description": "Represents an assignable role.",
    "EnumValueType": "String",
    "AllowedValues": [
@@ -78,7 +78,7 @@
   {
    "$id": "12",
    "Name": "Collection",
-   "Namespace": "ConfidentialLedger",
+   "Namespace": "Azure.Security.ConfidentialLedger",
    "Description": "Identifier for collections.",
    "IsNullable": false,
    "Properties": [
@@ -102,7 +102,7 @@
   {
    "$id": "15",
    "Name": "LedgerEntry",
-   "Namespace": "ConfidentialLedger",
+   "Namespace": "Azure.Security.ConfidentialLedger",
    "IsNullable": false,
    "Properties": [
     {
@@ -155,7 +155,7 @@
   {
    "$id": "22",
    "Name": "TransactionReceipt",
-   "Namespace": "ConfidentialLedger",
+   "Namespace": "Azure.Security.ConfidentialLedger",
    "Description": "A receipt certifying the transaction at the specified id.",
    "IsNullable": false,
    "Properties": [
@@ -167,7 +167,7 @@
      "Type": {
       "$id": "24",
       "Name": "ReceiptContents",
-      "Namespace": "ConfidentialLedger",
+      "Namespace": "Azure.Security.ConfidentialLedger",
       "IsNullable": false,
       "Properties": []
      },
@@ -210,7 +210,7 @@
   {
    "$id": "28",
    "Name": "TransactionStatus",
-   "Namespace": "ConfidentialLedger",
+   "Namespace": "Azure.Security.ConfidentialLedger",
    "Description": "Response returned to a query for the transaction status.",
    "IsNullable": false,
    "Properties": [
@@ -246,7 +246,7 @@
   {
    "$id": "32",
    "Name": "LedgerUser",
-   "Namespace": "ConfidentialLedger",
+   "Namespace": "Azure.Security.ConfidentialLedger",
    "Description": "Details about a Confidential ledger user.",
    "IsNullable": false,
    "Properties": [
@@ -282,7 +282,7 @@
   {
    "$id": "36",
    "Name": "LedgerIdentityInformation",
-   "Namespace": "ConfidentialLedger",
+   "Namespace": "Azure.Security.ConfidentialLedger",
    "Description": "Contains the information about a Confidential Ledger.",
    "IsNullable": false,
    "Properties": [
@@ -398,7 +398,8 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/collections",
-     "BufferResponse": true
+     "BufferResponse": false,
+     "GenerateConvenienceMethod": false
     },
     {
      "$id": "50",
@@ -447,7 +448,7 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/enclaveQuotes",
-     "BufferResponse": true,
+     "BufferResponse": false,
      "GenerateConvenienceMethod": true
     },
     {
@@ -497,7 +498,7 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/governance/constitution",
-     "BufferResponse": true,
+     "BufferResponse": false,
      "GenerateConvenienceMethod": true
     },
     {
@@ -547,7 +548,7 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/governance/members",
-     "BufferResponse": true,
+     "BufferResponse": false,
      "GenerateConvenienceMethod": true
     },
     {
@@ -600,7 +601,8 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/transactions",
-     "BufferResponse": true
+     "BufferResponse": false,
+     "GenerateConvenienceMethod": false
     },
     {
      "$id": "66",
@@ -687,7 +689,7 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/transactions",
-     "BufferResponse": true,
+     "BufferResponse": false,
      "GenerateConvenienceMethod": true
     },
     {
@@ -781,7 +783,7 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/transactions/{transactionId}",
-     "BufferResponse": true,
+     "BufferResponse": false,
      "GenerateConvenienceMethod": true
     },
     {
@@ -854,7 +856,7 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/transactions/{transactionId}/receipt",
-     "BufferResponse": true,
+     "BufferResponse": false,
      "GenerateConvenienceMethod": true
     },
     {
@@ -927,7 +929,7 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/transactions/{transactionId}/status",
-     "BufferResponse": true,
+     "BufferResponse": false,
      "GenerateConvenienceMethod": true
     },
     {
@@ -1001,7 +1003,8 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/transactions:getCurrentLedgerEntry",
-     "BufferResponse": true
+     "BufferResponse": false,
+     "GenerateConvenienceMethod": false
     },
     {
      "$id": "99",
@@ -1071,7 +1074,7 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/users/{userId}",
-     "BufferResponse": true,
+     "BufferResponse": false,
      "GenerateConvenienceMethod": true
     },
     {
@@ -1145,7 +1148,7 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/app/users/{userId}",
-     "BufferResponse": true,
+     "BufferResponse": false,
      "GenerateConvenienceMethod": true
     },
     {
@@ -1277,7 +1280,7 @@
      "RequestMediaTypes": [
       "application/merge-patch+json"
      ],
-     "BufferResponse": true,
+     "BufferResponse": false,
      "GenerateConvenienceMethod": false
     }
    ],
@@ -1360,7 +1363,8 @@
      "RequestBodyMediaType": "Json",
      "Uri": "{ledgerUri}",
      "Path": "/ledgerIdentity/{ledgerId}",
-     "BufferResponse": true
+     "BufferResponse": false,
+     "GenerateConvenienceMethod": false
     }
    ],
    "Protocol": {

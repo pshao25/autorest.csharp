@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace ConfidentialLedger
+namespace Azure.Security.ConfidentialLedger
 {
     /// <summary> Represents an assignable role. </summary>
     public readonly partial struct LedgerUserRole : IEquatable<LedgerUserRole>

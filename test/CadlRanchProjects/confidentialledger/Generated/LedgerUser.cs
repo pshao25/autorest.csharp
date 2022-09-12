@@ -8,7 +8,7 @@
 using System;
 using Azure.Core;
 
-namespace ConfidentialLedger
+namespace Azure.Security.ConfidentialLedger
 {
     /// <summary> Details about a Confidential ledger user. </summary>
     public partial class LedgerUser

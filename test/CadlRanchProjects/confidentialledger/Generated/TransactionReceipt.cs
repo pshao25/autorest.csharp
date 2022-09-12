@@ -8,7 +8,7 @@
 using System;
 using Azure.Core;
 
-namespace ConfidentialLedger
+namespace Azure.Security.ConfidentialLedger
 {
     /// <summary> A receipt certifying the transaction at the specified id. </summary>
     public partial class TransactionReceipt

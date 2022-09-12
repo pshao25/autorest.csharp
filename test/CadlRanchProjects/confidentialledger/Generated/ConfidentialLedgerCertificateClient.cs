@@ -11,7 +11,7 @@ using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
 
-namespace confidentialledger
+namespace Azure.Security.Confidentialledger
 {
     // Data plane generated client. The ConfidentialLedgerCertificate service client.
     /// <summary> The ConfidentialLedgerCertificate service client. </summary>
@@ -172,6 +172,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);

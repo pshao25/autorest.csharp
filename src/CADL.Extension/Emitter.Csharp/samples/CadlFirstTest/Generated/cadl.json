@@ -8,7 +8,7 @@
   {
    "$id": "2",
    "Name": "SimpleEnum",
-   "Namespace": "HelloWorld",
+   "Namespace": "Demo.HelloWorld",
    "Description": "Simple enum",
    "EnumValueType": "String",
    "AllowedValues": [
@@ -34,7 +34,7 @@
   {
    "$id": "6",
    "Name": "ExtensibleEnum",
-   "Namespace": "HelloWorld",
+   "Namespace": "Demo.HelloWorld",
    "Description": "Extensible enum",
    "EnumValueType": "String",
    "AllowedValues": [
@@ -62,7 +62,7 @@
   {
    "$id": "10",
    "Name": "Thing",
-   "Namespace": "HelloWorld",
+   "Namespace": "Demo.HelloWorld",
    "IsNullable": false,
    "Properties": [
     {
@@ -85,7 +85,7 @@
   {
    "$id": "13",
    "Name": "RoundTripModel",
-   "Namespace": "HelloWorld",
+   "Namespace": "Demo.HelloWorld",
    "IsNullable": false,
    "Properties": [
     {
@@ -240,7 +240,7 @@
      "Uri": "",
      "Path": "/top/{action}",
      "BufferResponse": false,
-     "GenerateConvenienceMethod": true
+     "GenerateConvenienceMethod": false
     },
     {
      "$id": "32",
@@ -268,7 +268,7 @@
      "Uri": "",
      "Path": "/top2",
      "BufferResponse": false,
-     "GenerateConvenienceMethod": true
+     "GenerateConvenienceMethod": false
     },
     {
      "$id": "34",
@@ -313,7 +313,7 @@
      "Uri": "",
      "Path": "/anonymousBody",
      "BufferResponse": false,
-     "GenerateConvenienceMethod": true
+     "GenerateConvenienceMethod": false
     }
    ],
    "Protocol": {
@@ -351,7 +351,7 @@
      "Uri": "",
      "Path": "/hello",
      "BufferResponse": false,
-     "GenerateConvenienceMethod": true
+     "GenerateConvenienceMethod": false
     }
    ],
    "Protocol": {
@@ -405,7 +405,7 @@
      "Uri": "",
      "Path": "/againHi",
      "BufferResponse": false,
-     "GenerateConvenienceMethod": true
+     "GenerateConvenienceMethod": false
     },
     {
      "$id": "46",
@@ -433,7 +433,7 @@
      "Uri": "",
      "Path": "/demoHi",
      "BufferResponse": false,
-     "GenerateConvenienceMethod": true
+     "GenerateConvenienceMethod": false
     }
    ],
    "Protocol": {

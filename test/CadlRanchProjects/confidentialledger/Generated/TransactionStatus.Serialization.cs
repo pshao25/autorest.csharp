@@ -9,7 +9,7 @@ using System.Text.Json;
 using Azure;
 using Azure.Core;
 
-namespace ConfidentialLedger
+namespace Azure.Security.ConfidentialLedger
 {
     public partial class TransactionStatus : IUtf8JsonSerializable
     {

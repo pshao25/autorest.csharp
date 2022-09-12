@@ -5,7 +5,7 @@
 
 #nullable disable
 
-namespace ConfidentialLedger
+namespace Azure.Security.ConfidentialLedger
 {
     /// <summary> The ReceiptContents. </summary>
     public partial class ReceiptContents

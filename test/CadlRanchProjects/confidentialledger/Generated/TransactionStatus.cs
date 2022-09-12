@@ -8,7 +8,7 @@
 using System;
 using Azure.Core;
 
-namespace ConfidentialLedger
+namespace Azure.Security.ConfidentialLedger
 {
     /// <summary> Response returned to a query for the transaction status. </summary>
     public partial class TransactionStatus

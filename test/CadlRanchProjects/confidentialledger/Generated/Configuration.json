@@ -1,6 +1,6 @@
 {
   "OutputFolder": ".",
-  "Namespace": "confidentialledger",
+  "Namespace": "Azure.Security.Confidentialledger",
   "LibraryName": null,
   "SharedSourceFolders": [
     "..\\..\\..\\..\\artifacts\\bin\\AutoRest.CSharp\\Debug\\netcoreapp3.1\\Generator.Shared",

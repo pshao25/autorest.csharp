@@ -8,7 +8,7 @@
 using System;
 using Azure.Core;
 
-namespace ConfidentialLedger
+namespace Azure.Security.ConfidentialLedger
 {
     /// <summary> Identifier for collections. </summary>
     public partial class Collection

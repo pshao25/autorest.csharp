@@ -8,7 +8,7 @@
 using System;
 using System.ComponentModel;
 
-namespace ConfidentialLedger
+namespace Azure.Security.ConfidentialLedger
 {
     /// <summary> Represents the state of the transaction. </summary>
     public readonly partial struct TransactionState : IEquatable<TransactionState>

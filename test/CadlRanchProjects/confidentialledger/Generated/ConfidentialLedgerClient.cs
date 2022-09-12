@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 using Azure;
 using Azure.Core;
 using Azure.Core.Pipeline;
-using ConfidentialLedger;
+using Azure.Security.ConfidentialLedger;
 
-namespace confidentialledger
+namespace Azure.Security.Confidentialledger
 {
     // Data plane generated client. The ConfidentialLedger service client.
     /// <summary> The ConfidentialLedger service client. </summary>
@@ -1636,6 +1636,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1649,6 +1650,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1662,6 +1664,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1675,6 +1678,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1688,6 +1692,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1701,6 +1706,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier201);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Post;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1719,6 +1725,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1737,6 +1744,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1752,6 +1760,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1767,6 +1776,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1784,6 +1794,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier204);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Delete;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1798,6 +1809,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -1812,6 +1824,7 @@ namespace confidentialledger
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200201);
             var request = message.Request;
+            message.BufferResponse = false;
             request.Method = RequestMethod.Patch;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
