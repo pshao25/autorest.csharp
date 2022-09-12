@@ -2,6 +2,7 @@ import "@cadl-lang/rest";
 import "@cadl-lang/versioning";
 import "@azure-tools/cadl-azure-core";
 import "@azure-tools/cadl-autorest";
+import "@cadl-lang/openapi";
 
 using Cadl.Http;
 using Cadl.Rest;
@@ -24,14 +25,24 @@ using OpenAPI;
     ledgerUri: string,
   }
 )
+@useAuth(OAuth2Auth<[AuthFlow]>)
 namespace Azure.Security.ConfidentialLedger;
+
+model AuthFlow {
+    type: OAuth2FlowType.clientCredentials;
+    tokenUrl: "https://confidential-ledger.azure.com/token";
+    refreshUrl: "https://confidential-ledger.azure.com/refresh";
+    scopes: [
+        "https://confidential-ledger.azure.com/.default"
+    ]
+}
 
 //
 // ** Parameter descriptions **
 //
 
 @doc("A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.")
-model TransactionId is string {};
+model TransactionId is string;
 
 model CollectionIdParameter {
   @query
@@ -61,7 +72,7 @@ model LedgerEntry {
   @key
   @visibility("read")
   // @doc("A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.")
-  transactionId: TransactionId;
+  transactionId: string;
 }
 
 // TODO: No way to set "x-ms-enum.name" right now
@@ -73,10 +84,6 @@ enum LedgerUserRoleKV {
   Administrator,
   Contributor,
   Reader,
-}
-
-model ledgerUserRoleParameter {
-  @path ledgerUserRole: LedgerUserRole
 }
 
 @resource("users")
@@ -109,7 +116,7 @@ enum LedgerQueryStateKV {
 model TransactionReceipt {
   receipt: ReceiptContents;
   state: LedgerQueryState;
-  transactionId: TransactionId;
+  transactionId: string;
 }
 
 // TODO: No way to set "x-ms-enum.name" right now
@@ -125,7 +132,7 @@ enum TransactionStateKV {
 @doc("Response returned to a query for the transaction status.")
 model TransactionStatus {
   state: TransactionState;
-  transactionId: TransactionId;
+  transactionId: string;
 }
 
 //
@@ -134,9 +141,9 @@ model TransactionStatus {
 
 @route("/app")
 namespace ConfidentialLedger {
-  // @summary("Retrieves a list of collection ids present in the Confidential Ledger")
-  // @doc("Collection ids are user-created collections of ledger entries")
-  // op listCollections is Azure.Core.NonPagedResourceList<Collection>;
+  @summary("Retrieves a list of collection ids present in the Confidential Ledger")
+  @doc("Collection ids are user-created collections of ledger entries")
+  op listCollections is Azure.Core.NonPagedResourceList<Collection>;
 
   // TODO: add return model
   @route("/enclaveQuotes")
@@ -151,12 +158,14 @@ namespace ConfidentialLedger {
   @summary("Gets the constitution used for governance.")
   @doc("The constitution is a script that assesses and applies proposals from consortium members.")
   @get
+  @OpenAPI.extension("x-ms-convenient-api", true)
   op getConstitution(...Foundations.ApiVersionParameter): OkResponse | Foundations.ErrorResponse;
 
   @route("/governance/members")
   @summary("Gets the consortium members.")
   @doc("Consortium members can manage the Confidential Ledger.")
   @get
+  @OpenAPI.extension("x-ms-convenient-api", true)
   op getConsortiumMembers(
     ...Foundations.ApiVersionParameter
   ): OkResponse | Foundations.ErrorResponse; // TODO: add return model
@@ -169,27 +178,36 @@ namespace ConfidentialLedger {
   @summary("Writes a ledger entry.")
   @doc("A collection id may optionally be specified.")
   @post
-  op createLedgerEntry(@body ledgerEntry: Foundations.ResourceCreateOrReplaceModel<LedgerEntry>): Foundations.LocationOfCreatedResourceResponse<LedgerEntry>;
+  @OpenAPI.extension("x-ms-convenient-api", true)
+  op createLedgerEntry is Azure.Core.ResourceCreateWithServiceProvidedName<
+    LedgerEntry,
+    {
+      parameters: CollectionIdParameter;
+    }
+  >;
 
-  // @summary("Gets the ledger entry at the specified transaction id. A collection id may optionally be specified to indicate the collection from which to fetch the value.")
-  // op getLedgerEntry is Azure.Core.ResourceRead<
-  //   LedgerEntry,
-  //   {
-  //     parameters: CollectionIdParameter;
-  //   }
-  // >;
+  @summary("Gets the ledger entry at the specified transaction id. A collection id may optionally be specified to indicate the collection from which to fetch the value.")
+  @OpenAPI.extension("x-ms-convenient-api", true)
+  op getLedgerEntry is Azure.Core.ResourceRead<
+    LedgerEntry,
+    {
+      parameters: CollectionIdParameter;
+    }
+  >;
 
-  // @get
-  // @action("receipt")
-  // @summary("Gets a receipt certifying ledger contents at a particular transaction id.")
-  // @segmentSeparator("/")
-  // op getReceipt is Azure.Core.ResourceAction<LedgerEntry, {}, TransactionReceipt>;
+  @get
+  @action("receipt")
+  @summary("Gets a receipt certifying ledger contents at a particular transaction id.")
+  @segmentSeparator("/")
+  @OpenAPI.extension("x-ms-convenient-api", true)
+  op getReceipt is Azure.Core.ResourceAction<LedgerEntry, {}, TransactionReceipt>;
 
-  // @get
-  // @action("status")
-  // @summary("Gets a receipt certifying ledger contents at a particular transaction id.")
-  // @segmentSeparator("/")
-  // op getTransactionStatus is Azure.Core.ResourceAction<LedgerEntry, {}, TransactionStatus>;
+  @get
+  @action("status")
+  @summary("Gets a receipt certifying ledger contents at a particular transaction id.")
+  @segmentSeparator("/")
+  @OpenAPI.extension("x-ms-convenient-api", true)
+  op getTransactionStatus is Azure.Core.ResourceAction<LedgerEntry, {}, TransactionStatus>;
 
   // TODO: There isn't a way to customize the action name at the moment
   @get
@@ -201,33 +219,32 @@ namespace ConfidentialLedger {
     LedgerEntry
   >;
 
-  @route("/userRoles")
-  @post
-  @summary("Post a user role.")
-  @OpenAPI.extension("x-ms-convenient-api", true)
-  op postLedgerUserRole(...ledgerUserRoleParameter): Cadl.Http.NoContentResponse | Foundations.ErrorResponse;
-
-  @route("/users")
-  @post
-  @summary("Posts a user.")
-  @OpenAPI.extension("x-ms-convenient-api", true)
-  op postUser(@body ledgerUser: LedgerUser): LedgerUser | Foundations.ErrorResponse;
-
-  @route("/users")
-  @delete
   @summary("Deletes a user from the Confidential Ledger.")
   @OpenAPI.extension("x-ms-convenient-api", true)
-  op deleteUser(...Foundations.ItemKeysOf<LedgerUser>): Cadl.Http.NoContentResponse | Foundations.ErrorResponse;
+  op deleteUser is Azure.Core.ResourceDelete<LedgerUser>;
 
-  @route("/users")
-  @get
   @summary("Gets a user.")
   @OpenAPI.extension("x-ms-convenient-api", true)
-  op getUser(...Foundations.ItemKeysOf<LedgerUser>): LedgerUser | Foundations.ErrorResponse;
+  op getUser is Azure.Core.ResourceRead<LedgerUser>;
 
-  @route("/users")
-  @patch
   @summary("Adds a user or updates a user's fields.")
   @OpenAPI.extension("x-ms-convenient-api", true)
-  op createOrUpdateUser(...Foundations.ItemKeysOf<LedgerUser>): LedgerUser | Foundations.ErrorResponse;
+  op createOrUpdateUser is Azure.Core.ResourceCreateOrUpdate<LedgerUser>;
+}
+
+@resource("ledgerIdentity")
+@doc("Contains the information about a Confidential Ledger.")
+model LedgerIdentityInformation {
+  @key
+  @doc("Id for the ledger.")
+  ledgerId: string;
+
+  @doc("PEM-encoded certificate used for TLS by the Confidential Ledger.")
+  ledgerTlsCertificate: string;
+}
+
+namespace ConfidentialLedgerCertificate{
+  @get
+  @summary("Gets identity information for a Confidential Ledger instance.")
+  op getLedgerIdentity is Azure.Core.ResourceRead<LedgerIdentityInformation>;
 }
