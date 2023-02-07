@@ -3,8 +3,16 @@ info: !Info
   description: Test Infrastructure for AutoRest
   title: AdditionalPropertiesClient
 schemas: !Schemas 
+  booleans:
+    - !BooleanSchema &ref_17
+      type: boolean
+      language: !Languages 
+        default:
+          name: Boolean
+          description: ''
+      protocol: !Protocols {}
   numbers:
-    - !NumberSchema &ref_4
+    - !NumberSchema &ref_11
       type: integer
       apiVersions:
         - !ApiVersion 
@@ -12,40 +20,7 @@ schemas: !Schemas
       precision: 32
       language: !Languages 
         default:
-          name: InputAdditionalPropertiesModelId
-          description: ''
-      protocol: !Protocols {}
-    - !NumberSchema &ref_5
-      type: integer
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      precision: 32
-      language: !Languages 
-        default:
-          name: ErrorStatus
-          description: ''
-      protocol: !Protocols {}
-    - !NumberSchema &ref_8
-      type: integer
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      precision: 32
-      language: !Languages 
-        default:
-          name: OutputAdditionalPropertiesModelId
-          description: ''
-      protocol: !Protocols {}
-    - !NumberSchema &ref_10
-      type: integer
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      precision: 32
-      language: !Languages 
-        default:
-          name: InputAdditionalPropertiesModelStructId
+          name: FishAge
           description: ''
       protocol: !Protocols {}
     - !NumberSchema &ref_12
@@ -56,7 +31,18 @@ schemas: !Schemas
       precision: 32
       language: !Languages 
         default:
-          name: OutputAdditionalPropertiesModelStructId
+          name: ErrorStatus
+          description: ''
+      protocol: !Protocols {}
+    - !NumberSchema &ref_19
+      type: integer
+      apiVersions:
+        - !ApiVersion 
+          version: 1.0.0
+      precision: 32
+      language: !Languages 
+        default:
+          name: CatAge
           description: ''
       protocol: !Protocols {}
   strings:
@@ -67,7 +53,17 @@ schemas: !Schemas
           name: String
           description: simple string
       protocol: !Protocols {}
-    - !StringSchema &ref_6
+    - !StringSchema &ref_9
+      type: string
+      apiVersions:
+        - !ApiVersion 
+          version: 1.0.0
+      language: !Languages 
+        default:
+          name: FishKind
+          description: Discriminator property for Fish.
+      protocol: !Protocols {}
+    - !StringSchema &ref_13
       type: string
       apiVersions:
         - !ApiVersion 
@@ -77,18 +73,68 @@ schemas: !Schemas
           name: ErrorMessage
           description: ''
       protocol: !Protocols {}
-    - !StringSchema &ref_1
+    - !StringSchema &ref_16
       type: string
       apiVersions:
         - !ApiVersion 
           version: 1.0.0
       language: !Languages 
         default:
-          name: String
+          name: PetName
           description: ''
       protocol: !Protocols {}
+    - !StringSchema &ref_5
+      type: string
+      apiVersions:
+        - !ApiVersion 
+          version: 1.0.0
+      language: !Languages 
+        default:
+          name: SharkSharktype
+          description: Discriminator property for Shark.
+      protocol: !Protocols {}
+    - !StringSchema &ref_20
+      type: string
+      apiVersions:
+        - !ApiVersion 
+          version: 1.0.0
+      language: !Languages 
+        default:
+          name: ManufacturerId
+          description: The manufacturer's unique ID.
+      protocol: !Protocols {}
+    - !StringSchema &ref_21
+      type: string
+      apiVersions:
+        - !ApiVersion 
+          version: 1.0.0
+      language: !Languages 
+        default:
+          name: ManufacturerName
+          description: The manufacturer's name.
+      protocol: !Protocols {}
+    - !StringSchema &ref_22
+      type: string
+      apiVersions:
+        - !ApiVersion 
+          version: 1.0.0
+      language: !Languages 
+        default:
+          name: ManufacturerAddress
+          description: The manufacturer's full address.
+      protocol: !Protocols {}
+    - !StringSchema &ref_23
+      type: string
+      apiVersions:
+        - !ApiVersion 
+          version: 1.0.0
+      language: !Languages 
+        default:
+          name: ManufacturerEtag
+          description: The entity tag for this resource.
+      protocol: !Protocols {}
   constants:
-    - !ConstantSchema &ref_14
+    - !ConstantSchema &ref_26
       type: constant
       value: !ConstantValue 
         value: application/json
@@ -98,7 +144,7 @@ schemas: !Schemas
           name: ApplicationJson
           description: Content Type 'application/json'
       protocol: !Protocols {}
-    - !ConstantSchema &ref_16
+    - !ConstantSchema &ref_27
       type: constant
       value: !ConstantValue 
         value: application/json
@@ -109,85 +155,241 @@ schemas: !Schemas
           description: 'Accept: application/json'
       protocol: !Protocols {}
   dictionaries:
-    - !DictionarySchema &ref_3
+    - !DictionarySchema &ref_7
       type: dictionary
-      elementType: !AnyObjectSchema &ref_2
-        type: any-object
+      elementType: !ObjectSchema &ref_2
+        type: object
+        apiVersions:
+          - !ApiVersion 
+            version: 1.0.0
+        children: !Relations 
+          all:
+            - !ObjectSchema &ref_1
+              type: object
+              apiVersions:
+                - !ApiVersion 
+                  version: 1.0.0
+              children: !Relations 
+                all:
+                  - !ObjectSchema &ref_3
+                    type: object
+                    apiVersions:
+                      - !ApiVersion 
+                        version: 1.0.0
+                    discriminatorValue: goblin
+                    parents: !Relations 
+                      all:
+                        - *ref_1
+                        - *ref_2
+                      immediate:
+                        - *ref_1
+                    serializationFormats:
+                      - json
+                    usage:
+                      - input
+                      - output
+                    extensions:
+                      x-ms-discriminator-value: goblin
+                    language: !Languages 
+                      default:
+                        name: GoblinShark
+                        description: The third level model GoblinShark in polymorphic multiple levels inheritance.
+                        namespace: ''
+                    protocol: !Protocols {}
+                  - !ObjectSchema &ref_4
+                    type: object
+                    apiVersions:
+                      - !ApiVersion 
+                        version: 1.0.0
+                    discriminatorValue: saw
+                    parents: !Relations 
+                      all:
+                        - *ref_1
+                        - *ref_2
+                      immediate:
+                        - *ref_1
+                    serializationFormats:
+                      - json
+                    usage:
+                      - input
+                      - output
+                    extensions:
+                      x-ms-discriminator-value: saw
+                    language: !Languages 
+                      default:
+                        name: SawShark
+                        description: The third level model SawShark in polymorphic multiple levels inheritance.
+                        namespace: ''
+                    protocol: !Protocols {}
+                immediate:
+                  - *ref_3
+                  - *ref_4
+              discriminator: !Discriminator 
+                all:
+                  goblin: *ref_3
+                  saw: *ref_4
+                immediate:
+                  goblin: *ref_3
+                  saw: *ref_4
+                property: !Property &ref_6
+                  schema: *ref_5
+                  isDiscriminator: true
+                  required: true
+                  serializedName: sharktype
+                  language: !Languages 
+                    default:
+                      name: sharktype
+                      description: Discriminator property for Shark.
+                  protocol: !Protocols {}
+              discriminatorValue: shark
+              parents: !Relations 
+                all:
+                  - *ref_2
+                immediate:
+                  - *ref_2
+              properties:
+                - *ref_6
+              serializationFormats:
+                - json
+              usage:
+                - input
+                - output
+              extensions:
+                x-ms-discriminator-value: shark
+              language: !Languages 
+                default:
+                  name: Shark
+                  description: The second level model in polymorphic multiple levels inheritance and it defines a new discriminator.
+                  namespace: ''
+              protocol: !Protocols {}
+            - *ref_3
+            - !ObjectSchema &ref_8
+              type: object
+              apiVersions:
+                - !ApiVersion 
+                  version: 1.0.0
+              discriminatorValue: salmon
+              parents: !Relations 
+                all:
+                  - *ref_2
+                immediate:
+                  - *ref_2
+              properties:
+                - !Property 
+                  schema: !ArraySchema &ref_24
+                    type: array
+                    apiVersions:
+                      - !ApiVersion 
+                        version: 1.0.0
+                    elementType: *ref_2
+                    extensions:
+                      x-cadl-name: Fish[]
+                      x-ms-identifiers: []
+                    language: !Languages 
+                      default:
+                        name: SalmonFriends
+                        description: Array of Fish
+                    protocol: !Protocols {}
+                  serializedName: friends
+                  extensions:
+                    x-cadl-name: Fish[]
+                    x-ms-identifiers: []
+                  language: !Languages 
+                    default:
+                      name: friends
+                      description: ''
+                  protocol: !Protocols {}
+                - !Property 
+                  schema: *ref_7
+                  serializedName: hate
+                  extensions:
+                    x-cadl-name: Record<Fish>
+                  language: !Languages 
+                    default:
+                      name: hate
+                      description: Dictionary of <Fish>
+                  protocol: !Protocols {}
+                - !Property 
+                  schema: *ref_2
+                  serializedName: partner
+                  language: !Languages 
+                    default:
+                      name: partner
+                      description: This is base model for polymorphic multiple levels inheritance with a discriminator.
+                  protocol: !Protocols {}
+              serializationFormats:
+                - json
+              usage:
+                - input
+                - output
+              extensions:
+                x-ms-discriminator-value: salmon
+              language: !Languages 
+                default:
+                  name: Salmon
+                  description: The second level model in polymorphic multiple levels inheritance which contains references to other polymorphic instances.
+                  namespace: ''
+              protocol: !Protocols {}
+            - *ref_4
+          immediate:
+            - *ref_1
+            - *ref_8
+        discriminator: !Discriminator 
+          all:
+            goblin: *ref_3
+            salmon: *ref_8
+            saw: *ref_4
+            shark: *ref_1
+          immediate:
+            salmon: *ref_8
+            shark: *ref_1
+          property: !Property &ref_10
+            schema: *ref_9
+            isDiscriminator: true
+            required: true
+            serializedName: kind
+            language: !Languages 
+              default:
+                name: kind
+                description: Discriminator property for Fish.
+            protocol: !Protocols {}
+        properties:
+          - *ref_10
+          - !Property 
+            schema: *ref_11
+            required: true
+            serializedName: age
+            language: !Languages 
+              default:
+                name: age
+                description: ''
+            protocol: !Protocols {}
+        serializationFormats:
+          - json
+        usage:
+          - input
+          - output
         language: !Languages 
           default:
-            name: AnyObject
-            description: Any object
+            name: Fish
+            description: This is base model for polymorphic multiple levels inheritance with a discriminator.
+            namespace: ''
         protocol: !Protocols {}
       language: !Languages 
         default:
-          name: InputAdditionalPropertiesModel
-          description: Dictionary of <AnyObject>
+          name: SalmonHate
+          description: Dictionary of <Fish>
       protocol: !Protocols {}
-    - !DictionarySchema &ref_7
-      type: dictionary
-      elementType: *ref_1
-      language: !Languages 
-        default:
-          name: OutputAdditionalPropertiesModel
-          description: Dictionary of <string>
-      protocol: !Protocols {}
-    - !DictionarySchema &ref_9
-      type: dictionary
-      elementType: *ref_2
-      language: !Languages 
-        default:
-          name: InputAdditionalPropertiesModelStruct
-          description: Dictionary of <AnyObject>
-      protocol: !Protocols {}
-    - !DictionarySchema &ref_11
-      type: dictionary
-      elementType: *ref_1
-      language: !Languages 
-        default:
-          name: OutputAdditionalPropertiesModelStruct
-          description: Dictionary of <string>
-      protocol: !Protocols {}
-  anyObjects:
-    - *ref_2
   objects:
-    - !ObjectSchema &ref_15
-      type: object
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      parents: !Relations 
-        all:
-          - *ref_3
-        immediate:
-          - *ref_3
-      properties:
-        - !Property 
-          schema: *ref_4
-          required: true
-          serializedName: id
-          language: !Languages 
-            default:
-              name: id
-              description: ''
-          protocol: !Protocols {}
-      serializationFormats:
-        - json
-      usage:
-        - input
-      language: !Languages 
-        default:
-          name: InputAdditionalPropertiesModel
-          description: ''
-          namespace: ''
-      protocol: !Protocols {}
-    - !ObjectSchema &ref_19
+    - *ref_2
+    - !ObjectSchema &ref_30
       type: object
       apiVersions:
         - !ApiVersion 
           version: 1.0.0
       properties:
         - !Property 
-          schema: *ref_5
+          schema: *ref_12
           serializedName: status
           language: !Languages 
             default:
@@ -195,7 +397,7 @@ schemas: !Schemas
               description: ''
           protocol: !Protocols {}
         - !Property 
-          schema: *ref_6
+          schema: *ref_13
           serializedName: message
           language: !Languages 
             default:
@@ -212,98 +414,149 @@ schemas: !Schemas
           description: ''
           namespace: ''
       protocol: !Protocols {}
-    - !ObjectSchema &ref_20
+    - !ObjectSchema &ref_14
       type: object
       apiVersions:
         - !ApiVersion 
           version: 1.0.0
+      children: !Relations 
+        all:
+          - !ObjectSchema &ref_15
+            type: object
+            apiVersions:
+              - !ApiVersion 
+                version: 1.0.0
+            parents: !Relations 
+              all:
+                - *ref_14
+                - !ObjectSchema &ref_18
+                  type: object
+                  apiVersions:
+                    - !ApiVersion 
+                      version: 1.0.0
+                  children: !Relations 
+                    all:
+                      - *ref_14
+                      - *ref_15
+                    immediate:
+                      - *ref_14
+                  properties:
+                    - !Property 
+                      schema: *ref_16
+                      required: true
+                      serializedName: name
+                      language: !Languages 
+                        default:
+                          name: name
+                          description: ''
+                      protocol: !Protocols {}
+                  language: !Languages 
+                    default:
+                      name: Pet
+                      description: This is base model for non-discriminator normal multiple levels inheritance.
+                      namespace: ''
+                  protocol: !Protocols {}
+              immediate:
+                - *ref_14
+            properties:
+              - !Property 
+                schema: *ref_17
+                required: true
+                serializedName: smart
+                language: !Languages 
+                  default:
+                    name: smart
+                    description: ''
+                protocol: !Protocols {}
+            language: !Languages 
+              default:
+                name: Siamese
+                description: The third level model in the normal multiple levels inheritance.
+                namespace: ''
+            protocol: !Protocols {}
+        immediate:
+          - *ref_15
       parents: !Relations 
         all:
-          - *ref_7
+          - *ref_18
         immediate:
-          - *ref_7
+          - *ref_18
       properties:
         - !Property 
-          schema: *ref_8
+          schema: *ref_19
+          required: true
+          serializedName: age
+          language: !Languages 
+            default:
+              name: age
+              description: ''
+          protocol: !Protocols {}
+      language: !Languages 
+        default:
+          name: Cat
+          description: The second level model in the normal multiple levels inheritance.
+          namespace: ''
+      protocol: !Protocols {}
+    - *ref_18
+    - *ref_3
+    - *ref_1
+    - !ObjectSchema 
+      type: object
+      apiVersions:
+        - !ApiVersion 
+          version: 1.0.0
+      properties:
+        - !Property 
+          schema: *ref_20
+          readOnly: true
           required: true
           serializedName: id
           language: !Languages 
             default:
               name: id
-              description: ''
+              description: The manufacturer's unique ID.
           protocol: !Protocols {}
-      serializationFormats:
-        - json
-      usage:
-        - output
-      language: !Languages 
-        default:
-          name: OutputAdditionalPropertiesModel
-          description: ''
-          namespace: ''
-      protocol: !Protocols {}
-    - !ObjectSchema &ref_21
-      type: object
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      parents: !Relations 
-        all:
-          - *ref_9
-        immediate:
-          - *ref_9
-      properties:
         - !Property 
-          schema: *ref_10
+          schema: *ref_21
           required: true
-          serializedName: id
+          serializedName: name
           language: !Languages 
             default:
-              name: id
-              description: ''
+              name: name
+              description: The manufacturer's name.
           protocol: !Protocols {}
-      serializationFormats:
-        - json
-      usage:
-        - input
-      language: !Languages 
-        default:
-          name: InputAdditionalPropertiesModelStruct
-          description: ''
-          namespace: ''
-      protocol: !Protocols {}
-    - !ObjectSchema &ref_24
-      type: object
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      parents: !Relations 
-        all:
-          - *ref_11
-        immediate:
-          - *ref_11
-      properties:
         - !Property 
-          schema: *ref_12
+          schema: *ref_22
           required: true
-          serializedName: id
+          serializedName: address
           language: !Languages 
             default:
-              name: id
-              description: ''
+              name: address
+              description: The manufacturer's full address.
           protocol: !Protocols {}
-      serializationFormats:
-        - json
-      usage:
-        - output
+        - !Property 
+          schema: *ref_23
+          readOnly: true
+          required: true
+          serializedName: etag
+          language: !Languages 
+            default:
+              name: etag
+              description: The entity tag for this resource.
+          protocol: !Protocols {}
       language: !Languages 
         default:
-          name: OutputAdditionalPropertiesModelStruct
-          description: ''
+          name: Manufacturer
+          description: A manufacturer of widgets.
           namespace: ''
       protocol: !Protocols {}
+    - *ref_8
+    - *ref_4
+    - *ref_15
+  arrays:
+    - *ref_24
 globalParameters:
-  - !Parameter &ref_13
+  - !Parameter &ref_25
     schema: *ref_0
     clientDefaultValue: http://localhost:3000
     implementation: Client
@@ -329,12 +582,12 @@ operationGroups:
           - !ApiVersion 
             version: 1.0.0
         parameters:
-          - *ref_13
+          - *ref_25
         requestMediaTypes:
-          application/json: !Request &ref_18
+          application/json: !Request &ref_29
             parameters:
               - !Parameter 
-                schema: *ref_14
+                schema: *ref_26
                 implementation: Method
                 origin: modelerfour:synthesized/content-type
                 required: true
@@ -346,8 +599,8 @@ operationGroups:
                 protocol: !Protocols 
                   http: !HttpParameter 
                     in: header
-              - !Parameter &ref_17
-                schema: *ref_15
+              - !Parameter &ref_28
+                schema: *ref_2
                 implementation: Method
                 required: true
                 language: !Languages 
@@ -359,7 +612,7 @@ operationGroups:
                     in: body
                     style: json
               - !Parameter 
-                schema: *ref_16
+                schema: *ref_27
                 implementation: Method
                 origin: modelerfour:synthesized/accept
                 required: true
@@ -372,7 +625,7 @@ operationGroups:
                   http: !HttpParameter 
                     in: header
             signatureParameters:
-              - *ref_17
+              - *ref_28
             language: !Languages 
               default:
                 name: ''
@@ -386,7 +639,7 @@ operationGroups:
                   - application/json
                 uri: '{$host}'
         requests:
-          - *ref_18
+          - *ref_29
         signatureParameters: []
         responses:
           - !Response 
@@ -400,7 +653,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !SchemaResponse 
-            schema: *ref_19
+            schema: *ref_30
             language: !Languages 
               default:
                 name: ''
@@ -423,12 +676,12 @@ operationGroups:
           - !ApiVersion 
             version: 1.0.0
         parameters:
-          - *ref_13
+          - *ref_25
         requests:
           - !Request 
             parameters:
               - !Parameter 
-                schema: *ref_16
+                schema: *ref_27
                 implementation: Method
                 origin: modelerfour:synthesized/accept
                 required: true
@@ -453,7 +706,7 @@ operationGroups:
         signatureParameters: []
         responses:
           - !SchemaResponse 
-            schema: *ref_20
+            schema: *ref_2
             language: !Languages 
               default:
                 name: ''
@@ -467,7 +720,7 @@ operationGroups:
                   - '200'
         exceptions:
           - !SchemaResponse 
-            schema: *ref_19
+            schema: *ref_30
             language: !Languages 
               default:
                 name: ''
@@ -482,167 +735,6 @@ operationGroups:
         language: !Languages 
           default:
             name: ReadOnly
-            description: Create a Pet which contains more properties than what is defined.
-        protocol: !Protocols {}
-      - !Operation 
-        operationId: AP_writeOnlyStruct
-        apiVersions:
-          - !ApiVersion 
-            version: 1.0.0
-        parameters:
-          - *ref_13
-        requestMediaTypes:
-          application/json: !Request &ref_23
-            parameters:
-              - !Parameter 
-                schema: *ref_14
-                implementation: Method
-                origin: modelerfour:synthesized/content-type
-                required: true
-                language: !Languages 
-                  default:
-                    name: contentType
-                    description: Body Parameter content-type
-                    serializedName: Content-Type
-                protocol: !Protocols 
-                  http: !HttpParameter 
-                    in: header
-              - !Parameter &ref_22
-                schema: *ref_21
-                implementation: Method
-                required: true
-                language: !Languages 
-                  default:
-                    name: createParameters
-                    description: ''
-                protocol: !Protocols 
-                  http: !HttpParameter 
-                    in: body
-                    style: json
-              - !Parameter 
-                schema: *ref_16
-                implementation: Method
-                origin: modelerfour:synthesized/accept
-                required: true
-                language: !Languages 
-                  default:
-                    name: accept
-                    description: Accept header
-                    serializedName: Accept
-                protocol: !Protocols 
-                  http: !HttpParameter 
-                    in: header
-            signatureParameters:
-              - *ref_22
-            language: !Languages 
-              default:
-                name: ''
-                description: ''
-            protocol: !Protocols 
-              http: !HttpWithBodyRequest 
-                path: /ap_struct_operation
-                method: get
-                knownMediaType: json
-                mediaTypes:
-                  - application/json
-                uri: '{$host}'
-        requests:
-          - *ref_23
-        signatureParameters: []
-        responses:
-          - !Response 
-            language: !Languages 
-              default:
-                name: ''
-                description: A Pet which contains more properties than what is defined.
-            protocol: !Protocols 
-              http: !HttpResponse 
-                statusCodes:
-                  - '200'
-        exceptions:
-          - !SchemaResponse 
-            schema: *ref_19
-            language: !Languages 
-              default:
-                name: ''
-                description: Unexpected error
-            protocol: !Protocols 
-              http: !HttpResponse 
-                knownMediaType: json
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - default
-        language: !Languages 
-          default:
-            name: WriteOnlyStruct
-            description: Create a Pet which contains more properties than what is defined.
-        protocol: !Protocols {}
-      - !Operation 
-        operationId: AP_readOnlyStruct
-        apiVersions:
-          - !ApiVersion 
-            version: 1.0.0
-        parameters:
-          - *ref_13
-        requests:
-          - !Request 
-            parameters:
-              - !Parameter 
-                schema: *ref_16
-                implementation: Method
-                origin: modelerfour:synthesized/accept
-                required: true
-                language: !Languages 
-                  default:
-                    name: accept
-                    description: Accept header
-                    serializedName: Accept
-                protocol: !Protocols 
-                  http: !HttpParameter 
-                    in: header
-            signatureParameters: []
-            language: !Languages 
-              default:
-                name: ''
-                description: ''
-            protocol: !Protocols 
-              http: !HttpRequest 
-                path: /ap_struct_operation
-                method: put
-                uri: '{$host}'
-        signatureParameters: []
-        responses:
-          - !SchemaResponse 
-            schema: *ref_24
-            language: !Languages 
-              default:
-                name: ''
-                description: A Pet which contains more properties than what is defined.
-            protocol: !Protocols 
-              http: !HttpResponse 
-                knownMediaType: json
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - '200'
-        exceptions:
-          - !SchemaResponse 
-            schema: *ref_19
-            language: !Languages 
-              default:
-                name: ''
-                description: Unexpected error
-            protocol: !Protocols 
-              http: !HttpResponse 
-                knownMediaType: json
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - default
-        language: !Languages 
-          default:
-            name: ReadOnlyStruct
             description: Create a Pet which contains more properties than what is defined.
         protocol: !Protocols {}
     language: !Languages 

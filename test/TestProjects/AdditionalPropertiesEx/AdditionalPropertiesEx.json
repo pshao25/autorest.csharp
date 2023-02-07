@@ -26,7 +26,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/InputAdditionalPropertiesModel"
+              "$ref": "#/definitions/Fish"
             }
           }
         ],
@@ -49,52 +49,7 @@
           "200": {
             "description": "A Pet which contains more properties than what is defined.",
             "schema": {
-              "$ref": "#/definitions/OutputAdditionalPropertiesModel"
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/ap_struct_operation": {
-      "get": {
-        "operationId": "AP_writeOnlyStruct",
-        "description": "Create a Pet which contains more properties than what is defined.",
-        "parameters": [
-          {
-            "name": "createParameters",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/InputAdditionalPropertiesModelStruct"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A Pet which contains more properties than what is defined."
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "put": {
-        "operationId": "AP_readOnlyStruct",
-        "description": "Create a Pet which contains more properties than what is defined.",
-        "responses": {
-          "200": {
-            "description": "A Pet which contains more properties than what is defined.",
-            "schema": {
-              "$ref": "#/definitions/OutputAdditionalPropertiesModelStruct"
+              "$ref": "#/definitions/Fish"
             }
           },
           "default": {
@@ -108,6 +63,174 @@
     }
   },
   "definitions": {
+    "Cat": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "The second level model in the normal multiple levels inheritance.",
+      "required": [
+        "age"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/Pet"
+        }
+      ]
+    },
+    "Fish": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Discriminator property for Fish."
+        },
+        "age": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "This is base model for polymorphic multiple levels inheritance with a discriminator.",
+      "discriminator": "kind",
+      "required": [
+        "kind",
+        "age"
+      ]
+    },
+    "GoblinShark": {
+      "type": "object",
+      "properties": {},
+      "description": "The third level model GoblinShark in polymorphic multiple levels inheritance.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Shark"
+        }
+      ],
+      "x-ms-discriminator-value": "goblin"
+    },
+    "Manufacturer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The manufacturer's unique ID.",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "description": "The manufacturer's name."
+        },
+        "address": {
+          "type": "string",
+          "description": "The manufacturer's full address."
+        },
+        "etag": {
+          "type": "string",
+          "description": "The entity tag for this resource.",
+          "readOnly": true
+        }
+      },
+      "description": "A manufacturer of widgets.",
+      "required": [
+        "id",
+        "name",
+        "address",
+        "etag"
+      ]
+    },
+    "Pet": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "This is base model for non-discriminator normal multiple levels inheritance.",
+      "required": [
+        "name"
+      ]
+    },
+    "Salmon": {
+      "type": "object",
+      "properties": {
+        "friends": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fish"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "Fish[]"
+        },
+        "hate": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Fish"
+          },
+          "x-cadl-name": "Record<Fish>"
+        },
+        "partner": {
+          "$ref": "#/definitions/Fish"
+        }
+      },
+      "description": "The second level model in polymorphic multiple levels inheritance which contains references to other polymorphic instances.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Fish"
+        }
+      ],
+      "x-ms-discriminator-value": "salmon"
+    },
+    "SawShark": {
+      "type": "object",
+      "properties": {},
+      "description": "The third level model SawShark in polymorphic multiple levels inheritance.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Shark"
+        }
+      ],
+      "x-ms-discriminator-value": "saw"
+    },
+    "Shark": {
+      "type": "object",
+      "properties": {
+        "sharktype": {
+          "type": "string",
+          "description": "Discriminator property for Shark."
+        }
+      },
+      "description": "The second level model in polymorphic multiple levels inheritance and it defines a new discriminator.",
+      "discriminator": "sharktype",
+      "required": [
+        "sharktype"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/Fish"
+        }
+      ],
+      "x-ms-discriminator-value": "shark"
+    },
+    "Siamese": {
+      "type": "object",
+      "properties": {
+        "smart": {
+          "type": "boolean"
+        }
+      },
+      "description": "The third level model in the normal multiple levels inheritance.",
+      "required": [
+        "smart"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/Cat"
+        }
+      ]
+    },
     "Error": {
       "type": "object",
       "properties": {
@@ -118,62 +241,6 @@
         "message": {
           "type": "string"
         }
-      }
-    },
-    "InputAdditionalPropertiesModel": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "integer"
-        }
-      },
-      "additionalProperties": {
-        "type": "object"
-      }
-    },
-    "InputAdditionalPropertiesModelStruct": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "integer"
-        }
-      },
-      "additionalProperties": {
-        "type": "object"
-      }
-    },
-    "OutputAdditionalPropertiesModel": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "integer"
-        }
-      },
-      "additionalProperties": {
-        "type": "string"
-      }
-    },
-    "OutputAdditionalPropertiesModelStruct": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "integer"
-        }
-      },
-      "additionalProperties": {
-        "type": "string"
       }
     }
   }
