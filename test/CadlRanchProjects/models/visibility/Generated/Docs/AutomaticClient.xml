@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="GetModelAsync(RequestContent,RequestContext)">
+<example>
+This sample shows how to call GetModelAsync with required request content and parse the result.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = await client.GetModelAsync(RequestContent.Create(data));
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("readProp").ToString());
+Console.WriteLine(result.GetProperty("queryProp").ToString());
+Console.WriteLine(result.GetProperty("createProp").ToString());
+Console.WriteLine(result.GetProperty("updateProp").ToString());
+Console.WriteLine(result.GetProperty("deleteProp").ToString());
+Console.WriteLine(result.GetProperty("otherProp").ToString());
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request and response payloads.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+Response Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="GetModel(RequestContent,RequestContext)">
+<example>
+This sample shows how to call GetModel with required request content and parse the result.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = client.GetModel(RequestContent.Create(data));
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("readProp").ToString());
+Console.WriteLine(result.GetProperty("queryProp").ToString());
+Console.WriteLine(result.GetProperty("createProp").ToString());
+Console.WriteLine(result.GetProperty("updateProp").ToString());
+Console.WriteLine(result.GetProperty("deleteProp").ToString());
+Console.WriteLine(result.GetProperty("otherProp").ToString());
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request and response payloads.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+Response Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="HeadModelAsync(RequestContent,RequestContext)">
+<example>
+This sample shows how to call HeadModelAsync with required request content.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = await client.HeadModelAsync(RequestContent.Create(data));
+Console.WriteLine(response.Status);
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request payload.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="HeadModel(RequestContent,RequestContext)">
+<example>
+This sample shows how to call HeadModel with required request content.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = client.HeadModel(RequestContent.Create(data));
+Console.WriteLine(response.Status);
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request payload.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="PutModelAsync(RequestContent,RequestContext)">
+<example>
+This sample shows how to call PutModelAsync with required request content.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = await client.PutModelAsync(RequestContent.Create(data));
+Console.WriteLine(response.Status);
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request payload.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="PutModel(RequestContent,RequestContext)">
+<example>
+This sample shows how to call PutModel with required request content.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = client.PutModel(RequestContent.Create(data));
+Console.WriteLine(response.Status);
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request payload.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="PatchModelAsync(RequestContent,RequestContext)">
+<example>
+This sample shows how to call PatchModelAsync with required request content.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = await client.PatchModelAsync(RequestContent.Create(data));
+Console.WriteLine(response.Status);
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request payload.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="PatchModel(RequestContent,RequestContext)">
+<example>
+This sample shows how to call PatchModel with required request content.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = client.PatchModel(RequestContent.Create(data));
+Console.WriteLine(response.Status);
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request payload.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="PostModelAsync(RequestContent,RequestContext)">
+<example>
+This sample shows how to call PostModelAsync with required request content.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = await client.PostModelAsync(RequestContent.Create(data));
+Console.WriteLine(response.Status);
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request payload.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="PostModel(RequestContent,RequestContext)">
+<example>
+This sample shows how to call PostModel with required request content.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = client.PostModel(RequestContent.Create(data));
+Console.WriteLine(response.Status);
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request payload.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="DeleteModelAsync(RequestContent,RequestContext)">
+<example>
+This sample shows how to call DeleteModelAsync with required request content.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = await client.DeleteModelAsync(RequestContent.Create(data));
+Console.WriteLine(response.Status);
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request payload.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+    <member name="DeleteModel(RequestContent,RequestContext)">
+<example>
+This sample shows how to call DeleteModel with required request content.
+<code><![CDATA[
+var client = new AutomaticClient();
+
+var data = new {
+    queryProp = "<queryProp>",
+    createProp = "<createProp>",
+    updateProp = "<updateProp>",
+    deleteProp = "<deleteProp>",
+    otherProp = "<otherProp>",
+};
+
+Response response = client.DeleteModel(RequestContent.Create(data));
+Console.WriteLine(response.Status);
+]]></code>
+</example>
+<remarks>
+Below is the JSON schema for the request payload.
+
+Request Body:
+
+Schema for <c>VisibilityModel</c>:
+<code>{
+  readProp: string, # Required. Required string, illustrating a readonly property.
+  queryProp: string, # Required. Required int32, illustrating a query property.
+  createProp: string, # Required. Required string[], illustrating a create property.
+  updateProp: string, # Required. Required int32[], illustrating a update property.
+  deleteProp: string, # Required. Required bool, illustrating a delete property.
+  otherProp: string, # Required. Other
+}
+</code>
+
+</remarks>
+    </member>
+  </members>
+</doc>
