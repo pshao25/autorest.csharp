@@ -53,7 +53,7 @@ namespace AutoRest.CSharp.Generation.Writers
             using (_writer.Namespace(clientType.Namespace))
             {
                 WriteDPGIdentificationComment();
-                _writer.WriteXmlDocumentationSummary($"{_client.Description}");
+                _writer.WriteXmlDocumentationSummary($"Hello{_client.Description}");
                 using (_writer.Scope($"{_client.Declaration.Accessibility} partial class {clientType:D}", scopeDeclarations: _client.Fields.ScopeDeclarations))
                 {
                     WriteClientFields();
