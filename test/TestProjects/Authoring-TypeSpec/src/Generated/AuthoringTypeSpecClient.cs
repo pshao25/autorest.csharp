@@ -17,7 +17,7 @@ using Azure.Core.Pipeline;
 namespace AuthoringTypeSpec
 {
     // Data plane generated client.
-    /// <summary> The AuthoringTypeSpec service client. </summary>
+    /// <summary> HelloThe AuthoringTypeSpec service client. </summary>
     public partial class AuthoringTypeSpecClient
     {
         private readonly HttpPipeline _pipeline;
