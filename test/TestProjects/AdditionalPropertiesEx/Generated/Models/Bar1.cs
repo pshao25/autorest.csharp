@@ -10,8 +10,8 @@ using System.Collections.Generic;
 
 namespace AdditionalPropertiesEx.Models
 {
-    /// <summary> The OutputAdditionalPropertiesModel. </summary>
-    public partial class OutputAdditionalPropertiesModel
+    /// <summary> The Bar1. </summary>
+    public partial class Bar1
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -45,33 +45,28 @@ namespace AdditionalPropertiesEx.Models
         /// </summary>
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="OutputAdditionalPropertiesModel"/>. </summary>
-        /// <param name="id"></param>
-        internal OutputAdditionalPropertiesModel(int id)
+        /// <summary> Initializes a new instance of <see cref="Bar1"/>. </summary>
+        /// <param name="test"></param>
+        internal Bar1(Foo test)
         {
-            Id = id;
-            AdditionalProperties = new ChangeTrackingDictionary<string, string>();
+            Test = test;
         }
 
-        /// <summary> Initializes a new instance of <see cref="OutputAdditionalPropertiesModel"/>. </summary>
-        /// <param name="id"></param>
-        /// <param name="additionalProperties"> Additional Properties. </param>
+        /// <summary> Initializes a new instance of <see cref="Bar1"/>. </summary>
+        /// <param name="test"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal OutputAdditionalPropertiesModel(int id, IReadOnlyDictionary<string, string> additionalProperties, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal Bar1(Foo test, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            Id = id;
-            AdditionalProperties = additionalProperties;
+            Test = test;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Initializes a new instance of <see cref="OutputAdditionalPropertiesModel"/> for deserialization. </summary>
-        internal OutputAdditionalPropertiesModel()
+        /// <summary> Initializes a new instance of <see cref="Bar1"/> for deserialization. </summary>
+        internal Bar1()
         {
         }
 
-        /// <summary> Gets the id. </summary>
-        public int Id { get; }
-        /// <summary> Additional Properties. </summary>
-        public IReadOnlyDictionary<string, string> AdditionalProperties { get; }
+        /// <summary> Gets the test. </summary>
+        public Foo Test { get; }
     }
 }

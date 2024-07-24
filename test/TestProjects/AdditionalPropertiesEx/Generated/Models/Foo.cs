@@ -10,8 +10,8 @@ using System.Collections.Generic;
 
 namespace AdditionalPropertiesEx.Models
 {
-    /// <summary> The OutputAdditionalPropertiesModelStruct. </summary>
-    public readonly partial struct OutputAdditionalPropertiesModelStruct
+    /// <summary> The Foo. </summary>
+    public partial class Foo
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -43,39 +43,33 @@ namespace AdditionalPropertiesEx.Models
         /// </list>
         /// </para>
         /// </summary>
-        private readonly IDictionary<string, BinaryData> _serializedAdditionalRawData;
+        private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="OutputAdditionalPropertiesModelStruct"/>. </summary>
-        /// <param name="id"></param>
-        /// <param name="additionalProperties"> Additional Properties. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="additionalProperties"/> is null. </exception>
-        internal OutputAdditionalPropertiesModelStruct(int id, IReadOnlyDictionary<string, string> additionalProperties)
+        /// <summary> Initializes a new instance of <see cref="Foo"/>. </summary>
+        /// <param name="name"></param>
+        /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
+        internal Foo(string name)
         {
-            Argument.AssertNotNull(additionalProperties, nameof(additionalProperties));
+            Argument.AssertNotNull(name, nameof(name));
 
-            Id = id;
-            AdditionalProperties = additionalProperties;
+            Name = name;
         }
 
-        /// <summary> Initializes a new instance of <see cref="OutputAdditionalPropertiesModelStruct"/>. </summary>
-        /// <param name="id"></param>
-        /// <param name="additionalProperties"> Additional Properties. </param>
+        /// <summary> Initializes a new instance of <see cref="Foo"/>. </summary>
+        /// <param name="name"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal OutputAdditionalPropertiesModelStruct(int id, IReadOnlyDictionary<string, string> additionalProperties, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal Foo(string name, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            Id = id;
-            AdditionalProperties = additionalProperties;
+            Name = name;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Initializes a new instance of <see cref="OutputAdditionalPropertiesModelStruct"/> for deserialization. </summary>
-        public OutputAdditionalPropertiesModelStruct()
+        /// <summary> Initializes a new instance of <see cref="Foo"/> for deserialization. </summary>
+        internal Foo()
         {
         }
 
-        /// <summary> Gets the id. </summary>
-        public int Id { get; }
-        /// <summary> Additional Properties. </summary>
-        public IReadOnlyDictionary<string, string> AdditionalProperties { get; }
+        /// <summary> Gets the name. </summary>
+        public string Name { get; }
     }
 }

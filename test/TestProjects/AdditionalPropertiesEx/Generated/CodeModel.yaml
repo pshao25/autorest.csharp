@@ -3,62 +3,6 @@ info: !Info
   description: Test Infrastructure for AutoRest
   title: AdditionalPropertiesClient
 schemas: !Schemas 
-  numbers:
-    - !NumberSchema &ref_4
-      type: integer
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      precision: 32
-      language: !Languages 
-        default:
-          name: InputAdditionalPropertiesModelId
-          description: ''
-      protocol: !Protocols {}
-    - !NumberSchema &ref_5
-      type: integer
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      precision: 32
-      language: !Languages 
-        default:
-          name: ErrorStatus
-          description: ''
-      protocol: !Protocols {}
-    - !NumberSchema &ref_8
-      type: integer
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      precision: 32
-      language: !Languages 
-        default:
-          name: OutputAdditionalPropertiesModelId
-          description: ''
-      protocol: !Protocols {}
-    - !NumberSchema &ref_10
-      type: integer
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      precision: 32
-      language: !Languages 
-        default:
-          name: InputAdditionalPropertiesModelStructId
-          description: ''
-      protocol: !Protocols {}
-    - !NumberSchema &ref_12
-      type: integer
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      precision: 32
-      language: !Languages 
-        default:
-          name: OutputAdditionalPropertiesModelStructId
-          description: ''
-      protocol: !Protocols {}
   strings:
     - !StringSchema &ref_0
       type: string
@@ -67,38 +11,18 @@ schemas: !Schemas
           name: String
           description: simple string
       protocol: !Protocols {}
-    - !StringSchema &ref_6
+    - !StringSchema &ref_3
       type: string
       apiVersions:
         - !ApiVersion 
           version: 1.0.0
       language: !Languages 
         default:
-          name: ErrorMessage
-          description: ''
-      protocol: !Protocols {}
-    - !StringSchema &ref_1
-      type: string
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      language: !Languages 
-        default:
-          name: String
+          name: FooName
           description: ''
       protocol: !Protocols {}
   constants:
-    - !ConstantSchema &ref_14
-      type: constant
-      value: !ConstantValue 
-        value: application/json
-      valueType: *ref_0
-      language: !Languages 
-        default:
-          name: ApplicationJson
-          description: Content Type 'application/json'
-      protocol: !Protocols {}
-    - !ConstantSchema &ref_16
+    - !ConstantSchema &ref_5
       type: constant
       value: !ConstantValue 
         value: application/json
@@ -108,128 +32,71 @@ schemas: !Schemas
           name: Accept
           description: 'Accept: application/json'
       protocol: !Protocols {}
-  dictionaries:
-    - !DictionarySchema &ref_3
-      type: dictionary
-      elementType: !AnyObjectSchema &ref_2
-        type: any-object
-        language: !Languages 
-          default:
-            name: AnyObject
-            description: Any object
-        protocol: !Protocols {}
-      language: !Languages 
-        default:
-          name: InputAdditionalPropertiesModel
-          description: Dictionary of <AnyObject>
-      protocol: !Protocols {}
-    - !DictionarySchema &ref_7
-      type: dictionary
-      elementType: *ref_1
-      language: !Languages 
-        default:
-          name: OutputAdditionalPropertiesModel
-          description: Dictionary of <string>
-      protocol: !Protocols {}
-    - !DictionarySchema &ref_9
-      type: dictionary
-      elementType: *ref_2
-      language: !Languages 
-        default:
-          name: InputAdditionalPropertiesModelStruct
-          description: Dictionary of <AnyObject>
-      protocol: !Protocols {}
-    - !DictionarySchema &ref_11
-      type: dictionary
-      elementType: *ref_1
-      language: !Languages 
-        default:
-          name: OutputAdditionalPropertiesModelStruct
-          description: Dictionary of <string>
-      protocol: !Protocols {}
-  anyObjects:
-    - *ref_2
   objects:
-    - !ObjectSchema &ref_15
+    - !ObjectSchema &ref_6
       type: object
       apiVersions:
         - !ApiVersion 
           version: 1.0.0
-      parents: !Relations 
-        all:
-          - *ref_3
-        immediate:
-          - *ref_3
       properties:
         - !Property 
-          schema: *ref_4
+          schema: !ObjectSchema &ref_1
+            type: object
+            apiVersions:
+              - !ApiVersion 
+                version: 1.0.0
+            children: !Relations 
+              all:
+                - !ObjectSchema &ref_2
+                  type: object
+                  apiVersions:
+                    - !ApiVersion 
+                      version: 1.0.0
+                  parents: !Relations 
+                    all:
+                      - *ref_1
+                    immediate:
+                      - *ref_1
+                  serializationFormats:
+                    - json
+                  usage:
+                    - output
+                  language: !Languages 
+                    default:
+                      name: Bar2Test
+                      description: ''
+                      namespace: ''
+                  protocol: !Protocols {}
+              immediate:
+                - *ref_2
+            properties:
+              - !Property 
+                schema: *ref_3
+                required: true
+                serializedName: name
+                language: !Languages 
+                  default:
+                    name: name
+                    description: ''
+                protocol: !Protocols {}
+            serializationFormats:
+              - json
+            usage:
+              - output
+            language: !Languages 
+              default:
+                name: Foo
+                description: ''
+                namespace: ''
+            protocol: !Protocols {}
+          nullable: true
           required: true
-          serializedName: id
+          serializedName: test
+          extensions:
+            x-nullable: true
           language: !Languages 
             default:
-              name: id
-              description: ''
-          protocol: !Protocols {}
-      serializationFormats:
-        - json
-      usage:
-        - input
-      language: !Languages 
-        default:
-          name: InputAdditionalPropertiesModel
-          description: ''
-          namespace: ''
-      protocol: !Protocols {}
-    - !ObjectSchema &ref_19
-      type: object
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      properties:
-        - !Property 
-          schema: *ref_5
-          serializedName: status
-          language: !Languages 
-            default:
-              name: status
-              description: ''
-          protocol: !Protocols {}
-        - !Property 
-          schema: *ref_6
-          serializedName: message
-          language: !Languages 
-            default:
-              name: message
-              description: ''
-          protocol: !Protocols {}
-      serializationFormats:
-        - json
-      usage:
-        - exception
-      language: !Languages 
-        default:
-          name: Error
-          description: ''
-          namespace: ''
-      protocol: !Protocols {}
-    - !ObjectSchema &ref_20
-      type: object
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      parents: !Relations 
-        all:
-          - *ref_7
-        immediate:
-          - *ref_7
-      properties:
-        - !Property 
-          schema: *ref_8
-          required: true
-          serializedName: id
-          language: !Languages 
-            default:
-              name: id
+              name: test
               description: ''
           protocol: !Protocols {}
       serializationFormats:
@@ -238,58 +105,25 @@ schemas: !Schemas
         - output
       language: !Languages 
         default:
-          name: OutputAdditionalPropertiesModel
+          name: Bar1
           description: ''
           namespace: ''
       protocol: !Protocols {}
-    - !ObjectSchema &ref_21
+    - *ref_1
+    - !ObjectSchema &ref_7
       type: object
       apiVersions:
         - !ApiVersion 
           version: 1.0.0
-      parents: !Relations 
-        all:
-          - *ref_9
-        immediate:
-          - *ref_9
       properties:
         - !Property 
-          schema: *ref_10
+          schema: *ref_2
+          nullable: true
           required: true
-          serializedName: id
+          serializedName: test
           language: !Languages 
             default:
-              name: id
-              description: ''
-          protocol: !Protocols {}
-      serializationFormats:
-        - json
-      usage:
-        - input
-      language: !Languages 
-        default:
-          name: InputAdditionalPropertiesModelStruct
-          description: ''
-          namespace: ''
-      protocol: !Protocols {}
-    - !ObjectSchema &ref_24
-      type: object
-      apiVersions:
-        - !ApiVersion 
-          version: 1.0.0
-      parents: !Relations 
-        all:
-          - *ref_11
-        immediate:
-          - *ref_11
-      properties:
-        - !Property 
-          schema: *ref_12
-          required: true
-          serializedName: id
-          language: !Languages 
-            default:
-              name: id
+              name: test
               description: ''
           protocol: !Protocols {}
       serializationFormats:
@@ -298,12 +132,13 @@ schemas: !Schemas
         - output
       language: !Languages 
         default:
-          name: OutputAdditionalPropertiesModelStruct
+          name: Bar2
           description: ''
           namespace: ''
       protocol: !Protocols {}
+    - *ref_2
 globalParameters:
-  - !Parameter &ref_13
+  - !Parameter &ref_4
     schema: *ref_0
     clientDefaultValue: http://localhost:3000
     implementation: Client
@@ -324,111 +159,17 @@ operationGroups:
     $key: AP
     operations:
       - !Operation 
-        operationId: AP_writeOnly
+        operationId: AP_bar1
         apiVersions:
           - !ApiVersion 
             version: 1.0.0
         parameters:
-          - *ref_13
-        requestMediaTypes:
-          application/json: !Request &ref_18
-            parameters:
-              - !Parameter 
-                schema: *ref_14
-                implementation: Method
-                origin: modelerfour:synthesized/content-type
-                required: true
-                language: !Languages 
-                  default:
-                    name: contentType
-                    description: Body Parameter content-type
-                    serializedName: Content-Type
-                protocol: !Protocols 
-                  http: !HttpParameter 
-                    in: header
-              - !Parameter &ref_17
-                schema: *ref_15
-                implementation: Method
-                required: true
-                language: !Languages 
-                  default:
-                    name: createParameters
-                    description: ''
-                protocol: !Protocols 
-                  http: !HttpParameter 
-                    in: body
-                    style: json
-              - !Parameter 
-                schema: *ref_16
-                implementation: Method
-                origin: modelerfour:synthesized/accept
-                required: true
-                language: !Languages 
-                  default:
-                    name: accept
-                    description: Accept header
-                    serializedName: Accept
-                protocol: !Protocols 
-                  http: !HttpParameter 
-                    in: header
-            signatureParameters:
-              - *ref_17
-            language: !Languages 
-              default:
-                name: ''
-                description: ''
-            protocol: !Protocols 
-              http: !HttpWithBodyRequest 
-                path: /ap_operation
-                method: get
-                knownMediaType: json
-                mediaTypes:
-                  - application/json
-                uri: '{$host}'
-        requests:
-          - *ref_18
-        signatureParameters: []
-        responses:
-          - !Response 
-            language: !Languages 
-              default:
-                name: ''
-                description: A Pet which contains more properties than what is defined.
-            protocol: !Protocols 
-              http: !HttpResponse 
-                statusCodes:
-                  - '200'
-        exceptions:
-          - !SchemaResponse 
-            schema: *ref_19
-            language: !Languages 
-              default:
-                name: ''
-                description: Unexpected error
-            protocol: !Protocols 
-              http: !HttpResponse 
-                knownMediaType: json
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - default
-        language: !Languages 
-          default:
-            name: WriteOnly
-            description: Create a Pet which contains more properties than what is defined.
-        protocol: !Protocols {}
-      - !Operation 
-        operationId: AP_readOnly
-        apiVersions:
-          - !ApiVersion 
-            version: 1.0.0
-        parameters:
-          - *ref_13
+          - *ref_4
         requests:
           - !Request 
             parameters:
               - !Parameter 
-                schema: *ref_16
+                schema: *ref_5
                 implementation: Method
                 origin: modelerfour:synthesized/accept
                 required: true
@@ -447,149 +188,41 @@ operationGroups:
                 description: ''
             protocol: !Protocols 
               http: !HttpRequest 
-                path: /ap_operation
-                method: put
-                uri: '{$host}'
-        signatureParameters: []
-        responses:
-          - !SchemaResponse 
-            schema: *ref_20
-            language: !Languages 
-              default:
-                name: ''
-                description: A Pet which contains more properties than what is defined.
-            protocol: !Protocols 
-              http: !HttpResponse 
-                knownMediaType: json
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - '200'
-        exceptions:
-          - !SchemaResponse 
-            schema: *ref_19
-            language: !Languages 
-              default:
-                name: ''
-                description: Unexpected error
-            protocol: !Protocols 
-              http: !HttpResponse 
-                knownMediaType: json
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - default
-        language: !Languages 
-          default:
-            name: ReadOnly
-            description: Create a Pet which contains more properties than what is defined.
-        protocol: !Protocols {}
-      - !Operation 
-        operationId: AP_writeOnlyStruct
-        apiVersions:
-          - !ApiVersion 
-            version: 1.0.0
-        parameters:
-          - *ref_13
-        requestMediaTypes:
-          application/json: !Request &ref_23
-            parameters:
-              - !Parameter 
-                schema: *ref_14
-                implementation: Method
-                origin: modelerfour:synthesized/content-type
-                required: true
-                language: !Languages 
-                  default:
-                    name: contentType
-                    description: Body Parameter content-type
-                    serializedName: Content-Type
-                protocol: !Protocols 
-                  http: !HttpParameter 
-                    in: header
-              - !Parameter &ref_22
-                schema: *ref_21
-                implementation: Method
-                required: true
-                language: !Languages 
-                  default:
-                    name: createParameters
-                    description: ''
-                protocol: !Protocols 
-                  http: !HttpParameter 
-                    in: body
-                    style: json
-              - !Parameter 
-                schema: *ref_16
-                implementation: Method
-                origin: modelerfour:synthesized/accept
-                required: true
-                language: !Languages 
-                  default:
-                    name: accept
-                    description: Accept header
-                    serializedName: Accept
-                protocol: !Protocols 
-                  http: !HttpParameter 
-                    in: header
-            signatureParameters:
-              - *ref_22
-            language: !Languages 
-              default:
-                name: ''
-                description: ''
-            protocol: !Protocols 
-              http: !HttpWithBodyRequest 
-                path: /ap_struct_operation
+                path: /AP_bar1
                 method: get
-                knownMediaType: json
-                mediaTypes:
-                  - application/json
                 uri: '{$host}'
-        requests:
-          - *ref_23
         signatureParameters: []
         responses:
-          - !Response 
+          - !SchemaResponse 
+            schema: *ref_6
             language: !Languages 
               default:
                 name: ''
                 description: A Pet which contains more properties than what is defined.
             protocol: !Protocols 
               http: !HttpResponse 
-                statusCodes:
-                  - '200'
-        exceptions:
-          - !SchemaResponse 
-            schema: *ref_19
-            language: !Languages 
-              default:
-                name: ''
-                description: Unexpected error
-            protocol: !Protocols 
-              http: !HttpResponse 
                 knownMediaType: json
                 mediaTypes:
                   - application/json
                 statusCodes:
-                  - default
+                  - '200'
         language: !Languages 
           default:
-            name: WriteOnlyStruct
+            name: Bar1
             description: Create a Pet which contains more properties than what is defined.
         protocol: !Protocols {}
       - !Operation 
-        operationId: AP_readOnlyStruct
+        operationId: AP_bar2
         apiVersions:
           - !ApiVersion 
             version: 1.0.0
         parameters:
-          - *ref_13
+          - *ref_4
         requests:
           - !Request 
             parameters:
               - !Parameter 
-                schema: *ref_16
+                schema: *ref_5
                 implementation: Method
                 origin: modelerfour:synthesized/accept
                 required: true
@@ -608,13 +241,13 @@ operationGroups:
                 description: ''
             protocol: !Protocols 
               http: !HttpRequest 
-                path: /ap_struct_operation
-                method: put
+                path: /AP_bar2
+                method: get
                 uri: '{$host}'
         signatureParameters: []
         responses:
           - !SchemaResponse 
-            schema: *ref_24
+            schema: *ref_7
             language: !Languages 
               default:
                 name: ''
@@ -626,23 +259,9 @@ operationGroups:
                   - application/json
                 statusCodes:
                   - '200'
-        exceptions:
-          - !SchemaResponse 
-            schema: *ref_19
-            language: !Languages 
-              default:
-                name: ''
-                description: Unexpected error
-            protocol: !Protocols 
-              http: !HttpResponse 
-                knownMediaType: json
-                mediaTypes:
-                  - application/json
-                statusCodes:
-                  - default
         language: !Languages 
           default:
-            name: ReadOnlyStruct
+            name: Bar2
             description: Create a Pet which contains more properties than what is defined.
         protocol: !Protocols {}
     language: !Languages 

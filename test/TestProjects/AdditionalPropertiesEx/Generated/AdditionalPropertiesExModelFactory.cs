@@ -5,44 +5,41 @@
 
 #nullable disable
 
-using System.Collections.Generic;
-
 namespace AdditionalPropertiesEx.Models
 {
     /// <summary> Model factory for models. </summary>
     public static partial class AdditionalPropertiesExModelFactory
     {
-        /// <summary> Initializes a new instance of <see cref="Models.InputAdditionalPropertiesModel"/>. </summary>
-        /// <param name="id"></param>
-        /// <param name="additionalProperties"> Additional Properties. </param>
-        /// <returns> A new <see cref="Models.InputAdditionalPropertiesModel"/> instance for mocking. </returns>
-        public static InputAdditionalPropertiesModel InputAdditionalPropertiesModel(int id = default, IDictionary<string, object> additionalProperties = null)
+        /// <summary> Initializes a new instance of <see cref="Models.Bar1"/>. </summary>
+        /// <param name="test"></param>
+        /// <returns> A new <see cref="Models.Bar1"/> instance for mocking. </returns>
+        public static Bar1 Bar1(Foo test = null)
         {
-            additionalProperties ??= new Dictionary<string, object>();
-
-            return new InputAdditionalPropertiesModel(id, additionalProperties);
+            return new Bar1(test, serializedAdditionalRawData: null);
         }
 
-        /// <summary> Initializes a new instance of <see cref="Models.OutputAdditionalPropertiesModel"/>. </summary>
-        /// <param name="id"></param>
-        /// <param name="additionalProperties"> Additional Properties. </param>
-        /// <returns> A new <see cref="Models.OutputAdditionalPropertiesModel"/> instance for mocking. </returns>
-        public static OutputAdditionalPropertiesModel OutputAdditionalPropertiesModel(int id = default, IReadOnlyDictionary<string, string> additionalProperties = null)
+        /// <summary> Initializes a new instance of <see cref="Models.Foo"/>. </summary>
+        /// <param name="name"></param>
+        /// <returns> A new <see cref="Models.Foo"/> instance for mocking. </returns>
+        public static Foo Foo(string name = null)
         {
-            additionalProperties ??= new Dictionary<string, string>();
-
-            return new OutputAdditionalPropertiesModel(id, additionalProperties, serializedAdditionalRawData: null);
+            return new Foo(name, serializedAdditionalRawData: null);
         }
 
-        /// <summary> Initializes a new instance of <see cref="Models.OutputAdditionalPropertiesModelStruct"/>. </summary>
-        /// <param name="id"></param>
-        /// <param name="additionalProperties"> Additional Properties. </param>
-        /// <returns> A new <see cref="Models.OutputAdditionalPropertiesModelStruct"/> instance for mocking. </returns>
-        public static OutputAdditionalPropertiesModelStruct OutputAdditionalPropertiesModelStruct(int id = default, IReadOnlyDictionary<string, string> additionalProperties = null)
+        /// <summary> Initializes a new instance of <see cref="Models.Bar2"/>. </summary>
+        /// <param name="test"></param>
+        /// <returns> A new <see cref="Models.Bar2"/> instance for mocking. </returns>
+        public static Bar2 Bar2(Bar2Test test = null)
         {
-            additionalProperties ??= new Dictionary<string, string>();
+            return new Bar2(test, serializedAdditionalRawData: null);
+        }
 
-            return new OutputAdditionalPropertiesModelStruct(id, additionalProperties, serializedAdditionalRawData: null);
+        /// <summary> Initializes a new instance of <see cref="Models.Bar2Test"/>. </summary>
+        /// <param name="name"></param>
+        /// <returns> A new <see cref="Models.Bar2Test"/> instance for mocking. </returns>
+        public static Bar2Test Bar2Test(string name = null)
+        {
+            return new Bar2Test(name, serializedAdditionalRawData: null);
         }
     }
 }

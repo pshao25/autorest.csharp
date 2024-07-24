@@ -39,33 +39,14 @@ namespace AdditionalPropertiesEx
         }
 
         /// <summary> Create a Pet which contains more properties than what is defined. </summary>
-        /// <param name="createParameters"> The <see cref="InputAdditionalPropertiesModel"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public virtual async Task<Response> WriteOnlyAsync(InputAdditionalPropertiesModel createParameters, CancellationToken cancellationToken = default)
+        public virtual async Task<Response<Bar1>> Bar1Async(CancellationToken cancellationToken = default)
         {
-            using var scope = _clientDiagnostics.CreateScope("APClient.WriteOnly");
+            using var scope = _clientDiagnostics.CreateScope("APClient.Bar1");
             scope.Start();
             try
             {
-                return await RestClient.WriteOnlyAsync(createParameters, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                scope.Failed(e);
-                throw;
-            }
-        }
-
-        /// <summary> Create a Pet which contains more properties than what is defined. </summary>
-        /// <param name="createParameters"> The <see cref="InputAdditionalPropertiesModel"/> to use. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public virtual Response WriteOnly(InputAdditionalPropertiesModel createParameters, CancellationToken cancellationToken = default)
-        {
-            using var scope = _clientDiagnostics.CreateScope("APClient.WriteOnly");
-            scope.Start();
-            try
-            {
-                return RestClient.WriteOnly(createParameters, cancellationToken);
+                return await RestClient.Bar1Async(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -76,13 +57,13 @@ namespace AdditionalPropertiesEx
 
         /// <summary> Create a Pet which contains more properties than what is defined. </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public virtual async Task<Response<OutputAdditionalPropertiesModel>> ReadOnlyAsync(CancellationToken cancellationToken = default)
+        public virtual Response<Bar1> Bar1(CancellationToken cancellationToken = default)
         {
-            using var scope = _clientDiagnostics.CreateScope("APClient.ReadOnly");
+            using var scope = _clientDiagnostics.CreateScope("APClient.Bar1");
             scope.Start();
             try
             {
-                return await RestClient.ReadOnlyAsync(cancellationToken).ConfigureAwait(false);
+                return RestClient.Bar1(cancellationToken);
             }
             catch (Exception e)
             {
@@ -93,49 +74,13 @@ namespace AdditionalPropertiesEx
 
         /// <summary> Create a Pet which contains more properties than what is defined. </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public virtual Response<OutputAdditionalPropertiesModel> ReadOnly(CancellationToken cancellationToken = default)
+        public virtual async Task<Response<Bar2>> Bar2Async(CancellationToken cancellationToken = default)
         {
-            using var scope = _clientDiagnostics.CreateScope("APClient.ReadOnly");
+            using var scope = _clientDiagnostics.CreateScope("APClient.Bar2");
             scope.Start();
             try
             {
-                return RestClient.ReadOnly(cancellationToken);
-            }
-            catch (Exception e)
-            {
-                scope.Failed(e);
-                throw;
-            }
-        }
-
-        /// <summary> Create a Pet which contains more properties than what is defined. </summary>
-        /// <param name="createParameters"> The <see cref="InputAdditionalPropertiesModelStruct"/> to use. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public virtual async Task<Response> WriteOnlyStructAsync(InputAdditionalPropertiesModelStruct createParameters, CancellationToken cancellationToken = default)
-        {
-            using var scope = _clientDiagnostics.CreateScope("APClient.WriteOnlyStruct");
-            scope.Start();
-            try
-            {
-                return await RestClient.WriteOnlyStructAsync(createParameters, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                scope.Failed(e);
-                throw;
-            }
-        }
-
-        /// <summary> Create a Pet which contains more properties than what is defined. </summary>
-        /// <param name="createParameters"> The <see cref="InputAdditionalPropertiesModelStruct"/> to use. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public virtual Response WriteOnlyStruct(InputAdditionalPropertiesModelStruct createParameters, CancellationToken cancellationToken = default)
-        {
-            using var scope = _clientDiagnostics.CreateScope("APClient.WriteOnlyStruct");
-            scope.Start();
-            try
-            {
-                return RestClient.WriteOnlyStruct(createParameters, cancellationToken);
+                return await RestClient.Bar2Async(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -146,30 +91,13 @@ namespace AdditionalPropertiesEx
 
         /// <summary> Create a Pet which contains more properties than what is defined. </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public virtual async Task<Response<OutputAdditionalPropertiesModelStruct>> ReadOnlyStructAsync(CancellationToken cancellationToken = default)
+        public virtual Response<Bar2> Bar2(CancellationToken cancellationToken = default)
         {
-            using var scope = _clientDiagnostics.CreateScope("APClient.ReadOnlyStruct");
+            using var scope = _clientDiagnostics.CreateScope("APClient.Bar2");
             scope.Start();
             try
             {
-                return await RestClient.ReadOnlyStructAsync(cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                scope.Failed(e);
-                throw;
-            }
-        }
-
-        /// <summary> Create a Pet which contains more properties than what is defined. </summary>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public virtual Response<OutputAdditionalPropertiesModelStruct> ReadOnlyStruct(CancellationToken cancellationToken = default)
-        {
-            using var scope = _clientDiagnostics.CreateScope("APClient.ReadOnlyStruct");
-            scope.Start();
-            try
-            {
-                return RestClient.ReadOnlyStruct(cancellationToken);
+                return RestClient.Bar2(cancellationToken);
             }
             catch (Exception e)
             {

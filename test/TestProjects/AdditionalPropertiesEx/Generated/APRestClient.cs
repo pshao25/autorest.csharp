@@ -36,75 +36,14 @@ namespace AdditionalPropertiesEx
             _endpoint = endpoint ?? new Uri("http://localhost:3000");
         }
 
-        internal HttpMessage CreateWriteOnlyRequest(InputAdditionalPropertiesModel createParameters)
+        internal HttpMessage CreateBar1Request()
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
-            uri.AppendPath("/ap_operation", false);
-            request.Uri = uri;
-            request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("Content-Type", "application/json");
-            var content = new Utf8JsonRequestContent();
-            content.JsonWriter.WriteObjectValue(createParameters, ModelSerializationExtensions.WireOptions);
-            request.Content = content;
-            return message;
-        }
-
-        /// <summary> Create a Pet which contains more properties than what is defined. </summary>
-        /// <param name="createParameters"> The <see cref="InputAdditionalPropertiesModel"/> to use. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="createParameters"/> is null. </exception>
-        public async Task<Response> WriteOnlyAsync(InputAdditionalPropertiesModel createParameters, CancellationToken cancellationToken = default)
-        {
-            if (createParameters == null)
-            {
-                throw new ArgumentNullException(nameof(createParameters));
-            }
-
-            using var message = CreateWriteOnlyRequest(createParameters);
-            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
-            switch (message.Response.Status)
-            {
-                case 200:
-                    return message.Response;
-                default:
-                    throw new RequestFailedException(message.Response);
-            }
-        }
-
-        /// <summary> Create a Pet which contains more properties than what is defined. </summary>
-        /// <param name="createParameters"> The <see cref="InputAdditionalPropertiesModel"/> to use. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="createParameters"/> is null. </exception>
-        public Response WriteOnly(InputAdditionalPropertiesModel createParameters, CancellationToken cancellationToken = default)
-        {
-            if (createParameters == null)
-            {
-                throw new ArgumentNullException(nameof(createParameters));
-            }
-
-            using var message = CreateWriteOnlyRequest(createParameters);
-            _pipeline.Send(message, cancellationToken);
-            switch (message.Response.Status)
-            {
-                case 200:
-                    return message.Response;
-                default:
-                    throw new RequestFailedException(message.Response);
-            }
-        }
-
-        internal HttpMessage CreateReadOnlyRequest()
-        {
-            var message = _pipeline.CreateMessage();
-            var request = message.Request;
-            request.Method = RequestMethod.Put;
-            var uri = new RawRequestUriBuilder();
-            uri.Reset(_endpoint);
-            uri.AppendPath("/ap_operation", false);
+            uri.AppendPath("/AP_bar1", false);
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             return message;
@@ -112,17 +51,17 @@ namespace AdditionalPropertiesEx
 
         /// <summary> Create a Pet which contains more properties than what is defined. </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public async Task<Response<OutputAdditionalPropertiesModel>> ReadOnlyAsync(CancellationToken cancellationToken = default)
+        public async Task<Response<Bar1>> Bar1Async(CancellationToken cancellationToken = default)
         {
-            using var message = CreateReadOnlyRequest();
+            using var message = CreateBar1Request();
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
                 case 200:
                     {
-                        OutputAdditionalPropertiesModel value = default;
+                        Bar1 value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-                        value = OutputAdditionalPropertiesModel.DeserializeOutputAdditionalPropertiesModel(document.RootElement);
+                        value = Models.Bar1.DeserializeBar1(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -132,17 +71,17 @@ namespace AdditionalPropertiesEx
 
         /// <summary> Create a Pet which contains more properties than what is defined. </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public Response<OutputAdditionalPropertiesModel> ReadOnly(CancellationToken cancellationToken = default)
+        public Response<Bar1> Bar1(CancellationToken cancellationToken = default)
         {
-            using var message = CreateReadOnlyRequest();
+            using var message = CreateBar1Request();
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
                 case 200:
                     {
-                        OutputAdditionalPropertiesModel value = default;
+                        Bar1 value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
-                        value = OutputAdditionalPropertiesModel.DeserializeOutputAdditionalPropertiesModel(document.RootElement);
+                        value = Models.Bar1.DeserializeBar1(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -150,63 +89,14 @@ namespace AdditionalPropertiesEx
             }
         }
 
-        internal HttpMessage CreateWriteOnlyStructRequest(InputAdditionalPropertiesModelStruct createParameters)
+        internal HttpMessage CreateBar2Request()
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
             request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
-            uri.AppendPath("/ap_struct_operation", false);
-            request.Uri = uri;
-            request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("Content-Type", "application/json");
-            var content = new Utf8JsonRequestContent();
-            content.JsonWriter.WriteObjectValue(createParameters, ModelSerializationExtensions.WireOptions);
-            request.Content = content;
-            return message;
-        }
-
-        /// <summary> Create a Pet which contains more properties than what is defined. </summary>
-        /// <param name="createParameters"> The <see cref="InputAdditionalPropertiesModelStruct"/> to use. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public async Task<Response> WriteOnlyStructAsync(InputAdditionalPropertiesModelStruct createParameters, CancellationToken cancellationToken = default)
-        {
-            using var message = CreateWriteOnlyStructRequest(createParameters);
-            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
-            switch (message.Response.Status)
-            {
-                case 200:
-                    return message.Response;
-                default:
-                    throw new RequestFailedException(message.Response);
-            }
-        }
-
-        /// <summary> Create a Pet which contains more properties than what is defined. </summary>
-        /// <param name="createParameters"> The <see cref="InputAdditionalPropertiesModelStruct"/> to use. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public Response WriteOnlyStruct(InputAdditionalPropertiesModelStruct createParameters, CancellationToken cancellationToken = default)
-        {
-            using var message = CreateWriteOnlyStructRequest(createParameters);
-            _pipeline.Send(message, cancellationToken);
-            switch (message.Response.Status)
-            {
-                case 200:
-                    return message.Response;
-                default:
-                    throw new RequestFailedException(message.Response);
-            }
-        }
-
-        internal HttpMessage CreateReadOnlyStructRequest()
-        {
-            var message = _pipeline.CreateMessage();
-            var request = message.Request;
-            request.Method = RequestMethod.Put;
-            var uri = new RawRequestUriBuilder();
-            uri.Reset(_endpoint);
-            uri.AppendPath("/ap_struct_operation", false);
+            uri.AppendPath("/AP_bar2", false);
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             return message;
@@ -214,17 +104,17 @@ namespace AdditionalPropertiesEx
 
         /// <summary> Create a Pet which contains more properties than what is defined. </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public async Task<Response<OutputAdditionalPropertiesModelStruct>> ReadOnlyStructAsync(CancellationToken cancellationToken = default)
+        public async Task<Response<Bar2>> Bar2Async(CancellationToken cancellationToken = default)
         {
-            using var message = CreateReadOnlyStructRequest();
+            using var message = CreateBar2Request();
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
                 case 200:
                     {
-                        OutputAdditionalPropertiesModelStruct value = default;
+                        Bar2 value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, default, cancellationToken).ConfigureAwait(false);
-                        value = OutputAdditionalPropertiesModelStruct.DeserializeOutputAdditionalPropertiesModelStruct(document.RootElement);
+                        value = Models.Bar2.DeserializeBar2(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -234,17 +124,17 @@ namespace AdditionalPropertiesEx
 
         /// <summary> Create a Pet which contains more properties than what is defined. </summary>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public Response<OutputAdditionalPropertiesModelStruct> ReadOnlyStruct(CancellationToken cancellationToken = default)
+        public Response<Bar2> Bar2(CancellationToken cancellationToken = default)
         {
-            using var message = CreateReadOnlyStructRequest();
+            using var message = CreateBar2Request();
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
                 case 200:
                     {
-                        OutputAdditionalPropertiesModelStruct value = default;
+                        Bar2 value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream);
-                        value = OutputAdditionalPropertiesModelStruct.DeserializeOutputAdditionalPropertiesModelStruct(document.RootElement);
+                        value = Models.Bar2.DeserializeBar2(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:

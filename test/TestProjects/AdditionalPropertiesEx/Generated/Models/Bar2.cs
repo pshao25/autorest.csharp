@@ -10,8 +10,8 @@ using System.Collections.Generic;
 
 namespace AdditionalPropertiesEx.Models
 {
-    /// <summary> The Error. </summary>
-    internal partial class Error
+    /// <summary> The Bar2. </summary>
+    public partial class Bar2
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -45,25 +45,28 @@ namespace AdditionalPropertiesEx.Models
         /// </summary>
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="Error"/>. </summary>
-        internal Error()
+        /// <summary> Initializes a new instance of <see cref="Bar2"/>. </summary>
+        /// <param name="test"></param>
+        internal Bar2(Bar2Test test)
         {
+            Test = test;
         }
 
-        /// <summary> Initializes a new instance of <see cref="Error"/>. </summary>
-        /// <param name="status"></param>
-        /// <param name="message"></param>
+        /// <summary> Initializes a new instance of <see cref="Bar2"/>. </summary>
+        /// <param name="test"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal Error(int? status, string message, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal Bar2(Bar2Test test, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            Status = status;
-            Message = message;
+            Test = test;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the status. </summary>
-        public int? Status { get; }
-        /// <summary> Gets the message. </summary>
-        public string Message { get; }
+        /// <summary> Initializes a new instance of <see cref="Bar2"/> for deserialization. </summary>
+        internal Bar2()
+        {
+        }
+
+        /// <summary> Gets the test. </summary>
+        public Bar2Test Test { get; }
     }
 }

@@ -16,91 +16,29 @@
     "application/json"
   ],
   "paths": {
-    "/ap_operation": {
+    "/AP_bar1": {
       "get": {
-        "operationId": "AP_writeOnly",
-        "description": "Create a Pet which contains more properties than what is defined.",
-        "parameters": [
-          {
-            "name": "createParameters",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/InputAdditionalPropertiesModel"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A Pet which contains more properties than what is defined."
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "put": {
-        "operationId": "AP_readOnly",
+        "operationId": "AP_bar1",
         "description": "Create a Pet which contains more properties than what is defined.",
         "responses": {
           "200": {
             "description": "A Pet which contains more properties than what is defined.",
             "schema": {
-              "$ref": "#/definitions/OutputAdditionalPropertiesModel"
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": "#/definitions/Bar1"
             }
           }
         }
       }
     },
-    "/ap_struct_operation": {
+    "/AP_bar2": {
       "get": {
-        "operationId": "AP_writeOnlyStruct",
-        "description": "Create a Pet which contains more properties than what is defined.",
-        "parameters": [
-          {
-            "name": "createParameters",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/InputAdditionalPropertiesModelStruct"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A Pet which contains more properties than what is defined."
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "put": {
-        "operationId": "AP_readOnlyStruct",
+        "operationId": "AP_bar2",
         "description": "Create a Pet which contains more properties than what is defined.",
         "responses": {
           "200": {
             "description": "A Pet which contains more properties than what is defined.",
             "schema": {
-              "$ref": "#/definitions/OutputAdditionalPropertiesModelStruct"
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": "#/definitions/Bar2"
             }
           }
         }
@@ -108,73 +46,46 @@
     }
   },
   "definitions": {
-    "Error": {
+    "Foo": {
       "type": "object",
       "properties": {
-        "status": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
+        "name": {
           "type": "string"
         }
-      }
-    },
-    "InputAdditionalPropertiesModel": {
-      "type": "object",
+      },
       "required": [
-        "id"
-      ],
+        "name"
+      ]
+    },
+    "Bar1": {
+      "type": "object",
       "properties": {
-        "id": {
-          "type": "integer"
+        "test": {
+          "type": "object",
+          "x-nullable": true,
+          "$ref": "#/definitions/Foo"
         }
       },
-      "additionalProperties": {
-        "type": "object"
-      }
-    },
-    "InputAdditionalPropertiesModelStruct": {
-      "type": "object",
       "required": [
-        "id"
-      ],
+        "test"
+      ]
+    },
+    "Bar2": {
+      "type": "object",
       "properties": {
-        "id": {
-          "type": "integer"
+        "test": {
+          "type": "object",
+          "x-nullable": true,
+          "allOf": [
+            {
+              "$ref": "#/definitions/Foo"
+            }
+          ]
         }
       },
-      "additionalProperties": {
-        "type": "object"
-      }
-    },
-    "OutputAdditionalPropertiesModel": {
-      "type": "object",
       "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "integer"
-        }
-      },
-      "additionalProperties": {
-        "type": "string"
-      }
-    },
-    "OutputAdditionalPropertiesModelStruct": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "integer"
-        }
-      },
-      "additionalProperties": {
-        "type": "string"
-      }
+        "test"
+      ]
     }
   }
 }
